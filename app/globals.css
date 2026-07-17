@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/animations.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+}
+
+/*
+// LEGACY TEMPLATE COLORS — tied to specific existing image assets (Card_3pink.png, macbook frame backdrops, etc).
+// Kept intentionally. Reuse only where a specific visual asset requires it during section adaptation.
+// Do not use these as new functional/brand colors — use --primary for that.
+- #D0C9B9
+- #D8D0BC
+- #0F0D0F
+- #131113
+- #F7C8FF
+- #81FFBD
+*/
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --surface: #F5F5F7;
+  --surface-elevated: #FFFFFF;
+  --border: #E5E5E5;
+  --muted: #F5F5F7;
+  --muted-foreground: #6B7280;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #1D4ED8;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #F5F5F5;
+  --surface: #131318;
+  --surface-elevated: #1A1A21;
+  --border: #26262E;
+  --muted: #17171D;
+  --muted-foreground: #9CA3AF;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #60A5FA;
+}
+
+@layer base {
+  html, body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 500ms ease, color 500ms ease;
+  }
+}
+

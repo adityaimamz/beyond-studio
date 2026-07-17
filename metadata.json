@@ -1,0 +1,6 @@
+{
+  "name": "E-Endless",
+  "description": "AI-powered content and design creator for content and marketing teams.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
