@@ -3,8 +3,8 @@ import './globals.css'; // Global styles
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'E-Endless — The easiest way to build your design products',
-  description: 'AI-powered content and design creator for content and marketing teams.',
+  title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
+  description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

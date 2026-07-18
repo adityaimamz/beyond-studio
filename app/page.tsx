@@ -15,11 +15,9 @@ import {
 
 export default function Index() {
   return (
-    <div className="relative w-full bg-background transition-colors duration-500 overflow-hidden">
-      <div className="relative">
-        <Navbar />
-        <HeroSection />
-      </div>
+    <div className="relative w-full bg-background transition-colors duration-500 overflow-x-clip">
+      <Navbar />
+      <HeroSection />
       <LayananSection />
       <CraftsmanshipSection />
       <StatsSection />

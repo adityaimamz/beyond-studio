@@ -130,13 +130,12 @@ export function Footer() {
       {/* Giant faded watermark wordmark */}
       <div style={fadeUp(inView, d.logo, 30)} className="mt-16 select-none pointer-events-none">
         <span
-          className="block font-display font-bold text-foreground"
+          className="block font-display font-bold text-foreground opacity-20 dark:opacity-[0.08] transition-opacity duration-300"
           style={{
             fontSize: "clamp(60px, 12vw, 180px)",
             lineHeight: 1,
             WebkitMaskImage: "linear-gradient(to top, transparent 18%, black 109%)",
             maskImage: "linear-gradient(to top, transparent 18%, black 109%)",
-            opacity: 0.08,
           }}
         >
           Beyond Studio

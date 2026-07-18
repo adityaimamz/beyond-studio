@@ -15,69 +15,71 @@ export function Navbar() {
   return (
     <>
       {/* Header */}
-      <header className="flex items-center px-[20px] pt-6 max-w-7xl mx-auto w-full relative z-50">
-        <a href="/" className="shrink-0 flex items-center gap-3 anim-rise" style={{ animationDelay: "480ms" }}>
-          <img src={logoUrl} alt="Beyond Studio Logo" width={40} height={40} />
-          <span className="font-display text-xl font-bold text-foreground">Beyond Studio</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-[30px] ml-[80px]">
-          {bsNavItems.map((item, i) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-[15px] text-foreground/70 hover:text-foreground transition-colors anim-rise"
-              style={{ animationDelay: `${600 + i * 60}ms` }}
+      <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10 transition-colors duration-300">
+        <div className="flex items-center px-[20px] py-3.5 max-w-7xl mx-auto w-full">
+          <a href="/" className="shrink-0 flex items-center gap-3 anim-rise" style={{ animationDelay: "480ms" }}>
+            <img src={logoUrl} alt="Beyond Studio Logo" width={40} height={40} />
+            <span className="font-display text-xl font-bold text-foreground">Beyond Studio</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-[30px] ml-[80px]">
+            {bsNavItems.map((item, i) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-[15px] text-foreground/70 hover:text-foreground transition-colors anim-rise"
+                style={{ animationDelay: `${600 + i * 60}ms` }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className="ml-auto hidden md:flex items-center gap-4 anim-pop" style={{ animationDelay: "900ms" }}>
+            {/* Theme Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/10 transition-all duration-300 cursor-pointer"
             >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className="ml-auto hidden md:flex items-center gap-4 anim-pop" style={{ animationDelay: "900ms" }}>
-          {/* Theme Toggle Button */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/10 transition-all duration-300 cursor-pointer"
-          >
-            {theme === "dark" ? (
-              <>
-                <Moon className="size-4 text-amber-300" />
-                <span>Night mode</span>
-              </>
-            ) : (
-              <>
-                <Sun className="size-4 text-amber-500" />
-                <span>Day mode</span>
-              </>
-            )}
-          </button>
+              {theme === "dark" ? (
+                <>
+                  <Moon className="size-4 text-amber-300" />
+                  <span>Night mode</span>
+                </>
+              ) : (
+                <>
+                  <Sun className="size-4 text-amber-500" />
+                  <span>Day mode</span>
+                </>
+              )}
+            </button>
 
-          <Button variant="primary" href={bsNavCTA.href}>
-            {bsNavCTA.label}
-          </Button>
-        </div>
-        {/* Mobile burger & toggle */}
-        <div className="ml-auto md:hidden flex items-center gap-2">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="p-2 text-foreground rounded-full border border-foreground/15 bg-foreground/5 hover:bg-foreground/10 transition-colors cursor-pointer"
-          >
-            {theme === "dark" ? <Moon className="size-5 text-amber-300" /> : <Sun className="size-5 text-amber-500" />}
-          </button>
+            <Button variant="primary" href={bsNavCTA.href}>
+              {bsNavCTA.label}
+            </Button>
+          </div>
+          {/* Mobile burger & toggle */}
+          <div className="ml-auto md:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="p-2 text-foreground rounded-full border border-foreground/15 bg-foreground/5 hover:bg-foreground/10 transition-colors cursor-pointer"
+            >
+              {theme === "dark" ? <Moon className="size-5 text-amber-300" /> : <Sun className="size-5 text-amber-500" />}
+            </button>
 
-          <button
-            aria-label="Open menu"
-            onClick={() => setMenuOpen(true)}
-            className="flex flex-col gap-1.5 p-2 anim-pop cursor-pointer"
-            style={{ animationDelay: "600ms" }}
-          >
-            <span className="block w-6 h-0.5 bg-foreground" />
-            <span className="block w-6 h-0.5 bg-foreground" />
-            <span className="block w-6 h-0.5 bg-foreground" />
-          </button>
+            <button
+              aria-label="Open menu"
+              onClick={() => setMenuOpen(true)}
+              className="flex flex-col gap-1.5 p-2 anim-pop cursor-pointer"
+              style={{ animationDelay: "600ms" }}
+            >
+              <span className="block w-6 h-0.5 bg-foreground" />
+              <span className="block w-6 h-0.5 bg-foreground" />
+              <span className="block w-6 h-0.5 bg-foreground" />
+            </button>
+          </div>
         </div>
       </header>
 

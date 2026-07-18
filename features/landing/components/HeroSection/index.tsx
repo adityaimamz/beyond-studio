@@ -29,6 +29,8 @@ import {
   CountUpInView,
 } from "@/components/common";
 
+import { useTheme } from "@/components/providers/ThemeProvider";
+
 function ToolIcon({ src, className, style }: { src: string; className?: string; style?: React.CSSProperties }) {
   return (
     <div className={`size-9 relative bg-white/10 rounded-lg flex items-center justify-center ${className ?? ""}`} style={style}>
@@ -39,6 +41,7 @@ function ToolIcon({ src, className, style }: { src: string; className?: string; 
 
 export function HeroSection() {
   const heroReady = useHeroReady(2100);
+  const { theme } = useTheme();
 
   return (
     <div className="relative">
@@ -249,8 +252,18 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none z-50" />
+      {/* Dynamic bottom gradient */}
+      <div
+        className={`absolute bottom-0 left-0 w-full h-[300px] pointer-events-none z-50 transition-colors duration-500 ${
+          theme === "light"
+            ? "bg-gradient-to-t from-white via-white/90 to-transparent"
+            : "bg-gradient-to-t from-black via-black/90 to-transparent"
+        }`}
+      />
     </div>
   );
 }
+
 export default HeroSection;
+
+
