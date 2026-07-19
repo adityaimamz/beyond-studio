@@ -9,9 +9,10 @@ import {
   ShoppingCart,
   Lock,
 } from "lucide-react";
+import { useSmoothScroll } from "@/components/providers/SmoothScrollProvider";
 
 // ---------------------------------------------------------------------------
-// Data — semua masih DUMMY, ganti title/description/domain/imageUrl dengan
+// Data   semua masih DUMMY, ganti title/description/domain/imageUrl dengan
 // data proyek asli sebelum publish.
 // ---------------------------------------------------------------------------
 type Project = {
@@ -32,7 +33,7 @@ const PROJECTS: Project[] = [
     category: "Landing Page",
     title: "Landing Page Promo Produk Skincare Lokal",
     description:
-      "Halaman promosi satu produk dengan fokus konversi — dari headline sampai CTA checkout, semua dirancang buat mempercepat keputusan beli.",
+      "Halaman promosi satu produk dengan fokus konversi   dari headline sampai CTA checkout, semua dirancang buat mempercepat keputusan beli.",
     domain: "skincarelokal.id",
     imageUrl: "/assets/Landing Page.png",
     imageAlt:
@@ -44,7 +45,7 @@ const PROJECTS: Project[] = [
     category: "Company Profile",
     title: "Company Profile Studio Fotografi",
     description:
-      "Website multi halaman menampilkan portofolio jasa, paket harga, dan galeri karya — dibangun supaya klien percaya sejak kunjungan pertama.",
+      "Website multi halaman menampilkan portofolio jasa, paket harga, dan galeri karya   dibangun supaya klien percaya sejak kunjungan pertama.",
     domain: "studiofotografi.id",
     imageUrl: "/assets/Company Profile.png",
     imageAlt:
@@ -68,7 +69,7 @@ const PROJECTS: Project[] = [
     category: "E-Commerce",
     title: "Toko Online Fashion Lokal",
     description:
-      "Toko online lengkap dengan payment gateway, manajemen stok, dan ongkir otomatis — dari checkout sampai konfirmasi pembayaran.",
+      "Toko online lengkap dengan payment gateway, manajemen stok, dan ongkir otomatis   dari checkout sampai konfirmasi pembayaran.",
     domain: "fashionlokal.co.id",
     imageUrl: "/assets/Portofolio Ui.png",
     imageAlt:
@@ -77,7 +78,7 @@ const PROJECTS: Project[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Scroll-entrance hook — cuma dipakai buat fade-in pertama kali tiap kartu
+// Scroll-entrance hook   cuma dipakai buat fade-in pertama kali tiap kartu
 // muncul di layar. Tidak ada scroll-math lain: efek tumpuk sepenuhnya CSS
 // (position: sticky), sama seperti komponen referensi aslinya.
 // ---------------------------------------------------------------------------
@@ -128,7 +129,7 @@ function AnimatedHeader() {
           transition-all duration-500 ease-out delay-200 motion-reduce:transition-none
           ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
-        Beberapa contoh nyata dari layanan yang sudah kami kerjakan — dari
+        Beberapa contoh nyata dari layanan yang sudah kami kerjakan   dari
         UMKM sampai bisnis yang butuh sistem custom.
       </p>
     </div>
@@ -185,11 +186,11 @@ function BrowserFrame({
 }
 
 // ---------------------------------------------------------------------------
-// Satu kartu yang bertumpuk — position: sticky dengan `top` yang SAMA di
+// Satu kartu yang bertumpuk   position: sticky dengan `top` yang SAMA di
 // semua kartu adalah kuncinya: kartu berikutnya (lebih akhir di DOM) akan
 // menutupi kartu sebelumnya begitu ia sampai di titik sticky yang sama,
 // menciptakan efek tumpukan kertas. Tidak ada JS yang menghitung posisi
-// scroll — murni CSS, sama seperti komponen referensi.
+// scroll   murni CSS, sama seperti komponen referensi.
 // ---------------------------------------------------------------------------
 function StackedCard({ project, index }: { project: Project; index: number }) {
   const [ref, inView] = useScrollAnimation();
@@ -264,8 +265,23 @@ function StackedCard({ project, index }: { project: Project; index: number }) {
 // Root section
 // ---------------------------------------------------------------------------
 export function PortfolioSection() {
+  const lenis = useSmoothScroll();
+
+  useEffect(() => {
+    if (!lenis) return;
+
+    const handleScroll = (e: any) => {
+    };
+
+    lenis.on("scroll", handleScroll);
+
+    return () => {
+      lenis.off("scroll", handleScroll);
+    };
+  }, [lenis]);
+
   return (
-    <section id="portofolio" className="relative bg-background scroll-mt-24">
+    <section id="portfolio" className="relative bg-background scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-20 md:pt-28 lg:pt-32 pb-12">
         <AnimatedHeader />
       </div>
@@ -274,19 +290,6 @@ export function PortfolioSection() {
           <StackedCard key={project.id} project={project} index={i} />
         ))}
       </div>
-
-      {/* <div className="relative bg-background max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20 text-center">
-        <a
-          href="#kontak"
-          className="inline-flex items-center justify-center px-8 py-3.5 rounded-lg
-            bg-primary text-primary-foreground font-semibold text-base
-            transition-all duration-200 ease-out hover:bg-primary-hover hover:shadow-lg
-            focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background
-            motion-reduce:transition-none"
-        >
-          Konsultasi Gratis
-        </a>
-      </div> */}
     </section>
   );
 }

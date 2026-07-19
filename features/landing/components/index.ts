@@ -6,4 +6,5 @@ export * from "./PillTagsSection";
 export * from "./PaketHargaSection";
 export * from "./TestimoniSection";
 export * from "./FaqSection";
+export * from "./ContactSection";
 

@@ -45,6 +45,24 @@ export function Footer() {
       <div className="flex flex-wrap justify-between gap-20 mt-28">
         {/* LEFT: headline + description */}
         <div className="max-w-xl">
+          <div 
+            className="flex items-center gap-3 mb-6" 
+            style={fadeUp(inView, Math.max(0, d.description - 100), 30)}
+          >
+            <div className="relative w-[40px] h-[40px] shrink-0">
+              <img
+                src="/images/logo-dark.png"
+                alt="Beyond Studio Logo"
+                className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-0 dark:opacity-100"
+              />
+              <img
+                src="/images/logo-light.png"
+                alt="Beyond Studio Logo"
+                className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-100 dark:opacity-0"
+              />
+            </div>
+            <span className="font-display text-xl font-bold text-foreground">Beyond Studio</span>
+          </div>
           <p
             className="text-foreground font-display text-3xl leading-tight tracking-tight font-bold"
             style={fadeUp(inView, d.description, 30)}
@@ -92,7 +110,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:scale-[1.08] hover:-rotate-6 active:scale-[0.95] group"
                 style={fadeUp(inView, d.col2Title + d.col2Step)}
               >
                 <MessageCircle size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />
@@ -102,7 +120,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:scale-[1.08] hover:-rotate-6 active:scale-[0.95] group"
                 style={fadeUp(inView, d.col2Title + d.col2Step * 2)}
               >
                 <Instagram size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />
@@ -112,7 +130,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
-                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-out)] hover:scale-[1.08] hover:-rotate-6 active:scale-[0.95] group"
                 style={fadeUp(inView, d.col2Title + d.col2Step * 3)}
               >
                 <Music2 size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />

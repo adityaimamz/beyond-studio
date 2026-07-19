@@ -8,16 +8,14 @@ import { WordsReveal, CountUp } from "@/components/common";
 function ListItem({ icon, label, active = false }: { icon: string; label: string; active?: boolean }) {
   return (
     <div
-      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl ${
-        active
+      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl ${active
           ? "bg-white/5 bg-gradient-to-r from-[#999999]/20 via-transparent to-transparent border border-white/10 border-r-transparent border-b-transparent"
           : "border border-transparent"
-      }`}
+        }`}
     >
       <div
-        className={`size-8 rounded-md flex items-center justify-center ${
-          active ? "bg-white/80" : "bg-white/5 border border-white/10"
-        }`}
+        className={`size-8 rounded-md flex items-center justify-center ${active ? "bg-white/80" : "bg-white/5 border border-white/10"
+          }`}
       >
         <img
           src={icon}
@@ -119,7 +117,7 @@ function FeatureCards() {
         className="relative h-[520px] rounded-3xl overflow-hidden bg-neutral-900 flex flex-col items-center text-center pt-12 px-6"
       >
         <WordsReveal as="h3" className="text-4xl text-neutral-100 leading-tight" text="AI helps to generate images free" delay={0.4} />
-        <WordsReveal as="p" className="mt-6 text-base opacity-40 text-neutral-100 max-w-[340px]" text="With endless, all it takes to create professional-grade images is a browser and a story to tell—no experience required." delay={0.7} step={0.04} duration={0.6} />
+        <WordsReveal as="p" className="mt-6 text-base opacity-40 text-neutral-100 max-w-[340px]" text="With endless, all it takes to create professional-grade images is a browser and a story to tell no experience required." delay={0.7} step={0.04} duration={0.6} />
         <motion.div
           className="mt-4 flex justify-center gap-2"
           initial="hidden"

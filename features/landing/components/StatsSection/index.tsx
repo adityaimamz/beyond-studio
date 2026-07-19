@@ -72,7 +72,7 @@ export function StatsSection() {
 
   return (
     <section ref={ref} className={`${palette.sectionBg} py-24 md:py-32 transition-colors duration-500`}>
-      {/* Section Header — asymmetric masthead, deliberately not the centered pattern used in the workflow section */}
+      {/* Section Header   asymmetric masthead, deliberately not the centered pattern used in the workflow section */}
       <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-6 lg:items-end">
         <motion.div
           className="lg:col-span-7 flex flex-col gap-5 md:items-start"
@@ -101,7 +101,7 @@ export function StatsSection() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 flex flex-col lg:flex-row lg:items-stretch gap-10 lg:gap-12">
-        {/* Metrics — spec-sheet rows, no card chrome: label left, number right, hairline dividers */}
+        {/* Metrics   spec-sheet rows, no card chrome: label left, number right, hairline dividers */}
         <div className={`w-full lg:w-[380px] shrink-0 border-t ${palette.specBorder} self-center`}>
           {METRICS.map((m, i) => (
             <motion.div
@@ -137,55 +137,55 @@ export function StatsSection() {
         </div>
 
         <div className="flex-1 flex lg:items-center">
-        {/* Multiplayer card */}
-        <motion.div
-          className={`relative ${palette.cardBg} rounded-[2rem] p-8 sm:p-12 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-        >
-          <p className={`text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight ${palette.cardTitle}`}>
-            Kami membangun website yang siap digunakan{" "}
-            <span className="relative inline-block align-baseline px-2 py-1 whitespace-nowrap">
-              {/* sweep bar */}
-              <motion.span
-                aria-hidden
-                className={`absolute inset-0 ${palette.sweepBar} rounded-md origin-left`}
-                initial={{ scaleX: 0 }}
-                animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-                transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
-                style={{ transformOrigin: "left center" }}
-              />
-              {/* base text */}
-              <span className={`relative font-semibold whitespace-nowrap ${palette.baseText}`}>hari ini</span>
-              {/* overlay text revealed in sync with bar */}
-              <motion.span
-                aria-hidden
-                className={`absolute inset-0 px-2 py-1 font-semibold whitespace-nowrap ${palette.overlayText}`}
-                initial={{ clipPath: "inset(0 100% 0 0)" }}
-                animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-                transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
-              >
-                hari ini
-              </motion.span>
-            </span>{" "}
-            dan mudah dikembangkan di masa depan.
-          </p>
-          {/* Animated cursor */}
+          {/* Multiplayer card */}
           <motion.div
-            className="absolute pointer-events-none"
-            style={{ top: "40%", left: "55%" }}
-            initial={{ opacity: 0, x: 100, y: 100 }}
-            animate={inView ? cursorKeyframes : { opacity: 0, x: 100, y: 100 }}
-            transition={cursorTransition}
+            className={`relative ${palette.cardBg} rounded-[2rem] p-8 sm:p-12 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           >
-            <img src={blueArrowUrl} alt="" width={28} height={28} />
-            <span className="absolute top-[22px] left-[18px] whitespace-nowrap bg-blue-500 text-white text-xs font-medium px-2.5 py-1 rounded-tr-lg rounded-bl-lg rounded-br-lg shadow-sm">
-              Beyond Team
-            </span>
+            <p className={`text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight ${palette.cardTitle}`}>
+              Kami membangun website yang siap digunakan{" "}
+              <span className="relative inline-block align-baseline px-2 py-1 whitespace-nowrap">
+                {/* sweep bar */}
+                <motion.span
+                  aria-hidden
+                  className={`absolute inset-0 ${palette.sweepBar} rounded-md origin-left`}
+                  initial={{ scaleX: 0 }}
+                  animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+                  transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
+                  style={{ transformOrigin: "left center" }}
+                />
+                {/* base text */}
+                <span className={`relative font-semibold whitespace-nowrap ${palette.baseText}`}>hari ini</span>
+                {/* overlay text revealed in sync with bar */}
+                <motion.span
+                  aria-hidden
+                  className={`absolute inset-0 px-2 py-1 font-semibold whitespace-nowrap ${palette.overlayText}`}
+                  initial={{ clipPath: "inset(0 100% 0 0)" }}
+                  animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
+                  transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
+                >
+                  hari ini
+                </motion.span>
+              </span>{" "}
+              dan mudah dikembangkan di masa depan.
+            </p>
+            {/* Animated cursor */}
+            <motion.div
+              className="absolute pointer-events-none"
+              style={{ top: "40%", left: "55%" }}
+              initial={{ opacity: 0, x: 100, y: 100 }}
+              animate={inView ? cursorKeyframes : { opacity: 0, x: 100, y: 100 }}
+              transition={cursorTransition}
+            >
+              <img src={blueArrowUrl} alt="" width={28} height={28} />
+              <span className="absolute top-[22px] left-[18px] whitespace-nowrap bg-blue-500 text-white text-xs font-medium px-2.5 py-1 rounded-tr-lg rounded-bl-lg rounded-br-lg shadow-sm">
+                Beyond Team
+              </span>
+            </motion.div>
           </motion.div>
-        </motion.div>
         </div>
       </div>
     </section>

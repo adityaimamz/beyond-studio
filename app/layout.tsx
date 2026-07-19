@@ -1,6 +1,9 @@
 import type {Metadata} from 'next';
 import './globals.css'; // Global styles
+import 'lenis/dist/lenis.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
+import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 
 export const metadata: Metadata = {
   title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
@@ -17,7 +20,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          <SmoothScrollProvider>
+            <ScrollIndicator />
+            {children}
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

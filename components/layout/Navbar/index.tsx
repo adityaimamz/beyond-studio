@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { logoUrl } from "@/constants/assets";
 import { bsNavItems, bsNavCTA } from "@/constants/landing";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -17,8 +16,23 @@ export function Navbar() {
       {/* Header */}
       <header className="relative z-50 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10 transition-colors duration-300">
         <div className="flex items-center px-[20px] py-3.5 max-w-7xl mx-auto w-full">
-          <a href="/" className="shrink-0 flex items-center gap-3 anim-rise" style={{ animationDelay: "480ms" }}>
-            <img src={logoUrl} alt="Beyond Studio Logo" width={40} height={40} />
+          <a href="/" className="shrink-0 flex items-center gap-1 anim-rise" style={{ animationDelay: "480ms" }}>
+            <div className="relative w-[40px] h-[40px] shrink-0">
+              <img
+                src="/images/logo-dark.png"
+                alt="Beyond Studio Logo"
+                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                  theme === "dark" ? "opacity-100" : "opacity-0"
+                }`}
+              />
+              <img
+                src="/images/logo-light.png"
+                alt="Beyond Studio Logo"
+                className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                  theme === "dark" ? "opacity-0" : "opacity-100"
+                }`}
+              />
+            </div>
             <span className="font-display text-xl font-bold text-foreground">Beyond Studio</span>
           </a>
           <nav className="hidden md:flex items-center gap-[30px] ml-[80px]">
@@ -39,7 +53,7 @@ export function Navbar() {
               type="button"
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/10 transition-all duration-300 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/10 transition-[background-color,transform] duration-[var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.97] cursor-pointer"
             >
               {theme === "dark" ? (
                 <>
@@ -95,7 +109,22 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <img src={logoUrl} alt="Logo" width={40} height={40} />
+                <div className="relative w-[40px] h-[40px] shrink-0">
+                  <img
+                    src="/images/logo-dark.png"
+                    alt="Beyond Studio Logo"
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                      theme === "dark" ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <img
+                    src="/images/logo-light.png"
+                    alt="Beyond Studio Logo"
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+                      theme === "dark" ? "opacity-0" : "opacity-100"
+                    }`}
+                  />
+                </div>
                 <span className="font-display text-xl font-bold text-foreground">Beyond Studio</span>
               </div>
               <button

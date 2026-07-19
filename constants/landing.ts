@@ -58,7 +58,7 @@ export const bsNavItems: NavItem[] = [
   { label: "Portfolio", href: "#portfolio" },
   { label: "FAQ", href: "#faq" },
 ];
-export const bsNavCTA: NavItem = { label: "Konsultasi Gratis", href: "#kontak" };
+export const bsNavCTA: NavItem = { label: "Konsultasi Gratis", href: "#contact" };
 
 export interface HeroContent {
   badge: string;
@@ -71,7 +71,7 @@ export const bsHeroContent: HeroContent = {
   badge: "DAFTAR HARGA LENGKAP & TRANSPARAN",
   headline: "Website Custom untuk Bisnis, Skripsi, dan Proyek Pribadi",
   subheadline: "Proses cepat, harga transparan, konsultasi gratis sebelum kamu memutuskan.",
-  ctaPrimary: { label: "Konsultasi via WhatsApp", href: "#kontak" },
+  ctaPrimary: { label: "Konsultasi via WhatsApp", href: "#contact" },
   ctaSecondary: { label: "Cek Paket Harga", href: "#paket-harga" },
 };
 
@@ -103,7 +103,7 @@ export const bsLayananList: LayananItem[] = [
 export interface PaketHarga {
   title: string;
   price: string;
-  priceUnit?: string;      // e.g. "" for one-time, or omit — Beyond Studio packages are one-time, not "/month" like the old template
+  priceUnit?: string;      // e.g. "" for one-time, or omit   Beyond Studio packages are one-time, not "/month" like the old template
   description: string;     // short 1-liner, replaces old plan description
   features: string[];
   ctaLabel: string;
@@ -174,7 +174,7 @@ export const bsTestimoniList: Testimoni[] = [
 export const bsTestimoniHeader = {
   headline: "Apa Kata Klien Kami",
   subheadline: "Cerita nyata dari UMKM, mahasiswa, freelancer, dan profesional yang sudah pakai layanan Beyond Studio.",
-  cta: { label: "Konsultasi Gratis", href: "#kontak" },  // replaces old "I want to learn more"
+  cta: { label: "Konsultasi Gratis", href: "#contact" },  // replaces old "I want to learn more"
 };
 
 export interface FAQItem { question: string; answer: string; }
@@ -191,7 +191,7 @@ export const bsKontakContent = {
   formCategories: ["UMKM/Bisnis", "Skripsi", "Personal/Freelancer"],
   whatsappNumberPlaceholder: "6281927070239",
   social: { instagram: "PLACEHOLDER_IG_URL", tiktok: "PLACEHOLDER_TIKTOK_URL" },
-  footerCopyright: "Beyond Studio — 2026",
+  footerCopyright: "Beyond Studio   2026",
 };
 
 export const bsFooterContent = {
@@ -211,7 +211,7 @@ export const bsCraftsmanshipContent: CraftsmanshipContent = {
   headline: "Dibangun Developer Profesional, Sesuai Kebutuhanmu",
   subheadline: "Setiap website dibangun dengan kode yang bersih dan terstruktur, sehingga lebih mudah dirawat, dikembangkan, dan siap mendukung kebutuhanmu setelah website live.",
   ctaPrimary: { label: "Lihat Alur Pengerjaan", href: "#alur-pengerjaan" },
-  ctaSecondary: { label: "Konsultasi Teknis", href: "#kontak" },
+  ctaSecondary: { label: "Konsultasi Teknis", href: "#contact" },
   techBadge: "Next.js",
   codeSnippet: [
     "export function BookingForm() {",
@@ -250,6 +250,6 @@ export const bsLayananCards: LayananCard[] = [
 export const bsLayananHeader = {
   eyebrow: "Kerja Cepat, Tanpa Ribet",           // reuse existing top-right small label pattern
   headline: "6 Layanan untuk Setiap Kebutuhan Websitemu",
-  cta: { label: "Konsultasi Gratis", href: "#kontak" },  // replaces "Join beta now"
+  cta: { label: "Konsultasi Gratis", href: "#contact" },  // replaces "Join beta now"
 };
 

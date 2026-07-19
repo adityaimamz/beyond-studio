@@ -12,6 +12,7 @@ import {
   PaketHargaSection,
   TestimoniSection,
   FaqSection,
+  ContactSection
 } from "@/features/landing/components";
 
 import { PortfolioSection } from "@/components/ui/portfolio-section";
@@ -48,6 +49,7 @@ export default function Index() {
         <TestimoniSection transparent />
         <FaqSection hideBackground />
       </div>
+      <ContactSection />
       <Footer />
     </div>
   );

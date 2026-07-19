@@ -17,7 +17,7 @@ export function Button({ variant = "primary", href, className = "", children, ..
     resolvedVariant = "outline";
   }
 
-  let baseClass = "rounded-lg font-medium transition-colors cursor-pointer inline-flex items-center justify-center py-2.5 px-5 text-sm";
+  let baseClass = "rounded-lg font-medium transition-[transform,background-color,color] duration-[var(--duration-fast)] ease-[var(--ease-out)] cursor-pointer inline-flex items-center justify-center py-2.5 px-5 text-sm active:scale-[0.97]";
 
   if (resolvedVariant === "primary") {
     baseClass += " bg-primary text-primary-foreground hover:bg-primary-hover";

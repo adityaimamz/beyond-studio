@@ -16,12 +16,21 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-hover: var(--primary-hover);
+  
+  /* Motion Tokens */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
 }
 
 /*
-// LEGACY TEMPLATE COLORS — tied to specific existing image assets (Card_3pink.png, macbook frame backdrops, etc).
+// LEGACY TEMPLATE COLORS   tied to specific existing image assets (Card_3pink.png, macbook frame backdrops, etc).
 // Kept intentionally. Reuse only where a specific visual asset requires it during section adaptation.
-// Do not use these as new functional/brand colors — use --primary for that.
+// Do not use these as new functional/brand colors   use --primary for that.
 - #D0C9B9
 - #D8D0BC
 - #0F0D0F
@@ -57,7 +66,9 @@
 }
 
 @layer base {
-  html, body {
+
+  html,
+  body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-display);
@@ -65,4 +76,3 @@
     transition: background-color 500ms ease, color 500ms ease;
   }
 }
-

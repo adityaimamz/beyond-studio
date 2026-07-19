@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { checkMarkUrl } from "@/constants/assets";
 import { bsPaketHargaList, bsPaketHargaHeader, type PaketHarga } from "@/constants/landing";
 import { WordsReveal } from "@/components/common";
-import { Badge } from "@/components/ui";
 import { useTheme } from "@/components/providers/ThemeProvider";
 
 interface PaketHargaCardProps {
@@ -22,7 +21,7 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
 
   return (
     <motion.div
-      className={`relative flex flex-col justify-between bg-white/40 backdrop-blur-sm p-8 rounded-2xl h-full transition-all duration-300 hover:scale-[1.01] hover:shadow-md ${
+      className={`relative overflow-hidden flex flex-col justify-between bg-white/40 backdrop-blur-sm p-8 rounded-2xl h-full transition-all duration-300 hover:scale-[1.01] hover:shadow-md ${
         plan.featured
           ? "border-2 border-stone-950/20 bg-white/60"
           : "border border-stone-950/5"
@@ -30,20 +29,16 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
       variants={item}
       transition={{ duration: 0.55, ease: "easeOut" }}
     >
-      {/* Badge or Populer indicator */}
+      {/* Premium Corner Label */}
       {plan.badge && (
-        <div className="absolute top-4 right-4">
-          <Badge className="bg-white border border-black/10 text-stone-950 px-2.5 py-1 rounded-full text-xs font-semibold shadow-xs">
-            {plan.badge}
-          </Badge>
+        <div className="absolute top-0 right-0 bg-stone-950 text-stone-50 px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] rounded-bl-2xl z-10 transition-colors hover:bg-stone-800 cursor-default">
+          {plan.badge}
         </div>
       )}
 
       {plan.featured && !plan.badge && (
-        <div className="absolute top-4 right-4">
-          <Badge className="bg-stone-950 text-white border border-transparent px-2.5 py-1 rounded-full text-xs font-semibold">
-            Populer
-          </Badge>
+        <div className="absolute top-0 right-0 bg-stone-950 text-stone-50 px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] rounded-bl-2xl z-10 transition-colors hover:bg-stone-800 cursor-default">
+          Populer
         </div>
       )}
 
@@ -81,10 +76,10 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
       <div className="mt-8">
         <a
           href="#kontak"
-          className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center block transition-all duration-200 cursor-pointer text-sm shadow-xs ${
+          className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center block transition-[background-color,transform,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.97] cursor-pointer text-sm shadow-xs ${
             isSkripsi
               ? "bg-transparent text-stone-950 border border-stone-950 hover:bg-stone-950/10"
-              : "bg-stone-950 text-white hover:bg-stone-800"
+              : "bg-stone-950 text-white hover:bg-stone-800 hover:shadow-md"
           }`}
         >
           {plan.ctaLabel}

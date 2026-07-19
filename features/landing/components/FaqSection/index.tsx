@@ -16,7 +16,7 @@ export function FaqSection({ hideBackground = false }: { hideBackground?: boolea
       introLabel="FAQ"
       eyebrow="Pertanyaan"
       title="Jawaban yang jelas sebelum kamu mulai."
-      description="Hal-hal yang sering ditanyakan tentang paket, timeline, revisi, dan proses kerja Beyond Studio — ringkas dan transparan."
+      description="Hal-hal yang sering ditanyakan tentang paket, timeline, revisi, dan proses kerja Beyond Studio   ringkas dan transparan."
     />
   );
 }
