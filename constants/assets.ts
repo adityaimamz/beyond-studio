@@ -38,11 +38,12 @@ export const whiteArrowUpRightUrl = ICONS + "WhiteArrowUpRight.svg";
 export const portfolioIllustrationAsset = "/assets/Portofolio Ui.png";
 
 export const layananMockups = {
-  sistemInformasi: "/assets/Sistem Informasi.png",
-  portofolio: "/assets/Portofolio Ui.png",
-  landingPage: "/assets/Landing Page.png",
-  companyProfile: "/assets/Company Profile.png",
-  paketSkripsi: "/assets/Skripsi.png",
-} as const;
+  sistemInformasi: "/images/services/sistem-informasi.png",
+  portofolio: "/images/services/portofolio.png",
+  ecommerce: "/images/services/e-commerce.png",
+  companyProfile: "/images/services/company-profile.png",
+  landingPage: "/images/services/landing-page.png",
+  skripsi: "/images/services/skripsi.png",
+};
 
 export const barUrls: string[] = [0, 1, 2, 3, 4, 5].map((i) => `${BARS}bar${i}.svg`);

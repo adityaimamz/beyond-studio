@@ -227,17 +227,17 @@ export function HeroSection() {
 
                 {/* Card 4 - Its Magic */}
                 <motion.div
-                  className="w-72 h-60 rounded-2xl overflow-hidden -mt-[56px]"
+                  className="w-96 h-60 rounded-2xl overflow-hidden -mt-[56px]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.36, delay: 0.36, ease: "easeOut" }}
                 >
-                  <img src={dashCard4.url} alt="" className="w-full h-full object-cover" />
+                  <img src={dashCard4.url} alt="" className="w-full h-full object-cover object-left" />
                 </motion.div>
 
                 {/* Card 5 - AI Created */}
                 <motion.div
-                  className="w-[555px] h-60 rounded-2xl overflow-hidden -mt-[56px]"
+                  className="w-[448px] h-60 rounded-2xl overflow-hidden -mt-[56px]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.36, delay: 0.42, ease: "easeOut" }}

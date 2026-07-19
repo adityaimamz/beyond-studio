@@ -96,8 +96,6 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
 
 export function PaketHargaSection() {
   const { theme } = useTheme();
-  const sectionBg = theme === "light" ? "bg-slate-50" : "bg-black";
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -110,7 +108,7 @@ export function PaketHargaSection() {
   };
 
   return (
-    <section id="paket-harga" className={`${sectionBg} p-5 transition-colors duration-500`}>
+    <section id="paket-harga" className="relative z-10 p-5 transition-colors duration-500">
       <div className="rounded-3xl px-6 py-12 sm:px-12 sm:py-20 max-w-7xl mx-auto" style={{ backgroundColor: "#D8D0BC" }}>
         {/* Header container */}
         <div className="text-center mb-16 max-w-3xl mx-auto flex flex-col gap-4">

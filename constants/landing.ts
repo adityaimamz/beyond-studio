@@ -145,8 +145,9 @@ export interface Testimoni {
   name: string;
   category: string;
   quote: string;
-  quoteParts?: [string, string, string]; // only for the featured testimonial — 3 sentences shown with decreasing opacity, matching the old "Announcement" paragraph fade treatment
+  quoteParts?: string[];
   featured?: boolean;
+  image?: string;
 }
 export const bsTestimoniList: Testimoni[] = [
   {
@@ -154,15 +155,21 @@ export const bsTestimoniList: Testimoni[] = [
     category: "Pemilik UMKM",
     quote: "Awalnya cuma mau bikin landing page buat jualan online, tapi dikasih masukan juga soal alur pemesanan yang lebih gampang buat pelanggan. Prosesnya jelas dari awal, harga juga sudah disepakati di depan.",
     featured: true,
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
     quoteParts: [
       "Awalnya cuma mau bikin landing page buat jualan online, tapi dikasih masukan juga soal alur pemesanan yang lebih gampang buat pelanggan.",
       "Prosesnya jelas dari awal, harga juga sudah disepakati di depan.",
       "",
     ],
   },
-  { name: "Fajar", category: "Mahasiswa Teknik Informatika", quote: "Sistem informasi buat skripsi jadi sesuai judul yang diajukan ke dosen. Bagian yang bikin tenang, ada sesi konsultasi teknis pas ada bagian yang belum saya pahami waktu sidang." },
-  { name: "Salsa", category: "Freelance Graphic Designer", quote: "Portofolio online-nya bikin gampang kirim link ke calon klien, dibanding kirim PDF CV satu-satu. Tampilannya juga rapi, sesuai sama gaya kerja saya sebagai desainer." },
-  { name: "Bapak Hendra", category: "Manajer Operasional PT Karya Sejahtera", quote: "Company profile-nya jadi lebih representatif buat perusahaan kami. Timeline pengerjaan sesuai yang dijanjikan di awal, dan komunikasinya enak - nggak perlu nunggu lama tiap kali ada revisi kecil." },
+  { name: "Fajar", category: "Mahasiswa Teknik Informatika", quote: "Sistem informasi buat skripsi jadi sesuai judul yang diajukan ke dosen. Bagian yang bikin tenang, ada sesi konsultasi teknis pas ada bagian yang belum saya pahami waktu sidang.", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Salsa", category: "Freelance Graphic Designer", quote: "Portofolio online-nya bikin gampang kirim link ke calon klien, dibanding kirim PDF CV satu-satu. Tampilannya juga rapi, sesuai sama gaya kerja saya sebagai desainer.", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Bapak Hendra", category: "Manajer Operasional PT Karya Sejahtera", quote: "Company profile-nya jadi lebih representatif buat perusahaan kami. Timeline pengerjaan sesuai yang dijanjikan di awal, dan komunikasinya enak - nggak perlu nunggu lama tiap kali ada revisi kecil.", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Reza", category: "Founder Startup", quote: "Pengerjaan super cepat dan hasilnya jauh di atas ekspektasi. Sangat merekomendasikan Beyond Studio untuk kebutuhan website custom.", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Amelia", category: "Digital Marketer", quote: "Website yang dibuat tidak hanya cantik, tapi juga dioptimasi untuk SEO. Trafik organik kami naik signifikan dalam sebulan.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Dimas", category: "Pemilik Restoran", quote: "Sistem booking yang dibuat sangat membantu operasional restoran kami. Tidak ada lagi double booking dan pelanggan lebih puas.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Kiki", category: "Content Creator", quote: "Sangat responsif dan komunikatif. Seluruh masukan saya didengarkan dan diimplementasikan dengan sangat baik.", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150" },
+  { name: "Rizky", category: "Agen Properti", quote: "Website portofolio yang bersih dan profesional. Klien saya sekarang lebih mudah melihat daftar properti yang saya tawarkan.", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150" },
 ];
 export const bsTestimoniHeader = {
   headline: "Apa Kata Klien Kami",

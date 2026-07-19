@@ -32,7 +32,7 @@ const defaultFaqs = [
   },
 ];
 
-const palettes = {
+export const palettes = {
   dark: {
     surface: "bg-black text-neutral-100",
     panel: "bg-neutral-900/50",
@@ -46,9 +46,9 @@ const palettes = {
     toggleSurface: "bg-white/10",
     glow: "rgba(255, 255, 255, 0.08)",
     aurora:
-      "radial-gradient(ellipse 50% 100% at 10% 0%, rgba(226, 232, 240, 0.15), transparent 65%), #000000",
+      "radial-gradient(ellipse 120% 60% at 50% 50%, rgba(226, 232, 240, 0.15), transparent 70%)",
     auroraSeamless:
-      "radial-gradient(ellipse 90% 140% at 6% -8%, rgba(226, 232, 240, 0.14), transparent 72%), #000000",
+      "radial-gradient(ellipse 120% 60% at 50% 50%, rgba(226, 232, 240, 0.14), transparent 70%)",
     shadow: "shadow-[0_36px_140px_-60px_rgba(10,10,10,0.95)]",
     overlay: "linear-gradient(130deg, rgba(255,255,255,0.04) 0%, transparent 65%)",
   },
@@ -65,11 +65,28 @@ const palettes = {
     toggleSurface: "bg-white",
     glow: "rgba(15, 15, 15, 0.08)",
     aurora:
-      "radial-gradient(ellipse 50% 100% at 10% 0%, rgba(15, 23, 42, 0.08), rgba(255, 255, 255, 0.95) 70%)",
+      "radial-gradient(ellipse 120% 60% at 50% 50%, rgba(15, 23, 42, 0.08), transparent 70%)",
     shadow: "shadow-[0_36px_120px_-70px_rgba(15,15,15,0.18)]",
     overlay: "linear-gradient(130deg, rgba(15,23,42,0.08) 0%, transparent 70%)",
   },
 } as const;
+
+/** Helper: kembalikan style aurora berdasarkan theme dan mode seamless */
+export function getAuroraStyle(
+  theme: ThemeMode,
+  seamlessTop: boolean
+): { background: string; overlay: string; mixBlendMode: "screen" | "multiply" } {
+  const p = palettes[theme];
+  const bg =
+    seamlessTop && theme === "dark" && "auroraSeamless" in p
+      ? (p as typeof palettes.dark).auroraSeamless
+      : p.aurora;
+  return {
+    background: bg,
+    overlay: p.overlay,
+    mixBlendMode: theme === "dark" ? "screen" : "multiply",
+  };
+}
 
 type ThemeMode = keyof typeof palettes;
 
@@ -88,6 +105,11 @@ export interface FAQMonochromeProps {
   description?: string;
   /** Memperpanjang glow aurora ke atas agar menyatu dengan section di atasnya */
   seamlessTop?: boolean;
+  /**
+   * Ketika `true`, aurora backdrop tidak dirender di dalam komponen ini.
+   * Gunakan ini ketika parent sudah menyediakan aurora background sendiri.
+   */
+  hideBackground?: boolean;
 }
 
 function getRootTheme(): ThemeMode {
@@ -109,6 +131,7 @@ export function FAQ1({
   description =
     "Everything you need to know about partnering with our team, condensed into calm monochrome clarity.",
   seamlessTop = false,
+  hideBackground = false,
 }: FAQMonochromeProps) {
   const { theme } = useTheme();
   const [introReady, setIntroReady] = useState(false);
@@ -310,18 +333,20 @@ export function FAQ1({
   return (
     <div
       id={id}
-      className={`relative w-full transition-colors duration-700 ${seamlessTop ? "z-[5] overflow-visible" : "overflow-hidden"} ${palette.surface}`}
+      className={`relative w-full transition-colors duration-700 ${seamlessTop ? "z-[5] overflow-visible" : "overflow-hidden"} ${hideBackground ? "bg-transparent text-inherit" : palette.surface}`}
     >
-      <div className={backdropPosition}>
-        <div className="absolute inset-0" style={{ background: auroraBackground }} />
-        <div
-          className="absolute inset-0 opacity-80"
-          style={{
-            background: palette.overlay,
-            mixBlendMode: theme === "dark" ? "screen" : "multiply",
-          }}
-        />
-      </div>
+      {!hideBackground && (
+        <div className={backdropPosition}>
+          <div className="absolute inset-0" style={{ background: auroraBackground }} />
+          <div
+            className="absolute inset-0 opacity-80"
+            style={{
+              background: palette.overlay,
+              mixBlendMode: theme === "dark" ? "screen" : "multiply",
+            }}
+          />
+        </div>
+      )}
 
       <section
         className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 lg:max-w-5xl lg:px-12 ${

@@ -41,7 +41,7 @@ export function Footer() {
   };
 
   return (
-    <footer ref={ref} className="relative w-full overflow-hidden bg-background px-6 md:px-10 pb-12 border-t border-border">
+    <footer ref={ref} className="relative w-full overflow-hidden bg-background px-6 md:px-10 pb-12">
       <div className="flex flex-wrap justify-between gap-20 mt-28">
         {/* LEFT: headline + description */}
         <div className="max-w-xl">
@@ -86,42 +86,37 @@ export function Footer() {
             >
               Hubungi Kami
             </h4>
-            <div className="mt-7 flex flex-col gap-6">
+            <div className="mt-7 flex gap-3">
               <a
                 href={`https://wa.me/${bsKontakContent.whatsappNumberPlaceholder}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-foreground/70 hover:text-foreground text-base transition-colors font-medium"
+                aria-label="WhatsApp"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
                 style={fadeUp(inView, d.col2Title + d.col2Step)}
               >
-                <MessageCircle size={18} />
-                WhatsApp: {bsKontakContent.whatsappNumberPlaceholder}
+                <MessageCircle size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />
               </a>
-              <div className="text-foreground/70 text-base font-medium" style={fadeUp(inView, d.col2Title + d.col2Step * 2)}>
-                Ikuti Kami
-              </div>
-              <div className="flex gap-2 -mt-1">
-                <a
-                  href={bsKontakContent.social.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors"
-                  style={fadeUp(inView, d.col2Title + d.col2Step * 3)}
-                >
-                  <Instagram size={18} className="text-foreground/70" />
-                </a>
-                <a
-                  href={bsKontakContent.social.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                  className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors"
-                  style={fadeUp(inView, d.col2Title + d.col2Step * 4)}
-                >
-                  <Music2 size={18} className="text-foreground/70" />
-                </a>
-              </div>
+              <a
+                href={bsKontakContent.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
+                style={fadeUp(inView, d.col2Title + d.col2Step * 2)}
+              >
+                <Instagram size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />
+              </a>
+              <a
+                href={bsKontakContent.social.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+                className="flex w-11 h-11 justify-center items-center rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors group"
+                style={fadeUp(inView, d.col2Title + d.col2Step * 3)}
+              >
+                <Music2 size={18} className="text-foreground/70 group-hover:text-foreground transition-colors" />
+              </a>
             </div>
           </div>
         </div>

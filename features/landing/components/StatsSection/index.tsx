@@ -5,35 +5,56 @@ import { motion, useInView as useInViewFM } from "framer-motion";
 import { blueArrowUrl } from "@/constants/assets";
 import { CountNumber } from "@/components/common/CountUp";
 import { useTheme } from "@/components/providers/ThemeProvider";
+import { Badge } from "@/components/ui/badge";
 
 const palettes = {
   dark: {
     sectionBg: "bg-black",
     statNumber: "text-neutral-100",
-    statText: "text-neutral-100 opacity-40",
     cardBg: "bg-neutral-900 border border-transparent",
     cardTitle: "text-white",
     baseText: "text-white",
     sweepBar: "bg-white",
     overlayText: "text-stone-950",
+    specBorder: "border-white/10",
+    specLabel: "text-white/40",
+    specDesc: "text-neutral-500",
+    accentBar: "bg-primary-hover",
   },
   light: {
     sectionBg: "bg-slate-50",
     statNumber: "text-neutral-900 font-bold",
-    statText: "text-neutral-600 font-medium",
     cardBg: "bg-white border border-neutral-200/80 shadow-xl",
     cardTitle: "text-neutral-900 font-medium",
     baseText: "text-neutral-900",
     sweepBar: "bg-neutral-900",
     overlayText: "text-white",
+    specBorder: "border-neutral-200",
+    specLabel: "text-neutral-400",
+    specDesc: "text-neutral-500",
+    accentBar: "bg-primary",
   },
 } as const;
+
+const METRICS = [
+  {
+    label: "Tingkat referral",
+    value: 47,
+    desc: "klien datang dari rekomendasi klien lama",
+  },
+  {
+    label: "Kecepatan pengerjaan",
+    value: 63,
+    desc: "lebih cepat live dibanding standar agensi",
+  },
+];
 
 export function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInViewFM(ref, { once: true, margin: "-100px" });
   const { theme } = useTheme();
-  const palette = palettes[theme === "light" ? "light" : "dark"];
+  const isLight = theme === "light";
+  const palette = palettes[isLight ? "light" : "dark"];
 
   // Cursor choreography keyframes (delays start after card appears ~0.6s)
   const cursorKeyframes = {
@@ -50,74 +71,106 @@ export function StatsSection() {
   };
 
   return (
-    <section ref={ref} className={`${palette.sectionBg} py-24 transition-colors duration-500`}>
-      <div className="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-12">
-        {/* Stat 1 */}
+    <section ref={ref} className={`${palette.sectionBg} py-24 md:py-32 transition-colors duration-500`}>
+      {/* Section Header — asymmetric masthead, deliberately not the centered pattern used in the workflow section */}
+      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-6 lg:items-end">
         <motion.div
-          className="flex flex-col items-center text-center gap-4"
-          initial={{ opacity: 0, y: 30 }}
+          className="lg:col-span-7 flex flex-col gap-5 md:items-start"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className={`text-6xl ${palette.statNumber}`}>
-            <CountNumber to={47} start={inView} />%
-          </span>
-          <p className={`text-2xl max-w-[250px] ${palette.statText}`}>
-            of designs build with E-endless Designer
-          </p>
+          <Badge className="w-fit tracking-[0.08em] uppercase">
+            Mengapa Beyond Studio
+          </Badge>
+          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] ${theme === "light" ? "text-neutral-900" : "text-white"}`}>
+            Website yang Dibangun untuk Jangka Panjang.
+          </h2>
         </motion.div>
 
-        {/* Stat 2 */}
-        <motion.div
-          className="flex flex-col items-center text-center gap-4"
-          initial={{ opacity: 0, y: 30 }}
+        <motion.p
+          className={`lg:col-span-5 text-lg md:text-xl leading-relaxed lg:pb-1 ${theme === "light" ? "text-neutral-600" : "text-neutral-400"}`}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
-          <span className={`text-6xl ${palette.statNumber}`}>
-            <CountNumber to={63} start={inView} />%
-          </span>
-          <p className={`text-2xl max-w-[340px] ${palette.statText}`}>
-            of the top AI startups use E-Endless Designer
-          </p>
-        </motion.div>
+          Kami fokus pada komunikasi transparan, pengembangan kustom, dan kode yang bersih. Bukan sekadar membuat website, tapi membangun aset digital yang mudah dikembangkan di masa depan.
+        </motion.p>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-5 flex flex-col lg:flex-row lg:items-stretch gap-10 lg:gap-12">
+        {/* Metrics — spec-sheet rows, no card chrome: label left, number right, hairline dividers */}
+        <div className={`w-full lg:w-[380px] shrink-0 border-t ${palette.specBorder} self-center`}>
+          {METRICS.map((m, i) => (
+            <motion.div
+              key={m.label}
+              className={`flex items-start justify-between gap-6 py-7 border-b ${palette.specBorder}`}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.1 }}
+            >
+              <div className="flex flex-col gap-2 max-w-[20ch]">
+                <span className={`text-[11px] font-mono tracking-[0.15em] uppercase ${palette.specLabel}`}>
+                  {m.label}
+                </span>
+                <p className={`text-sm leading-snug ${palette.specDesc}`}>{m.desc}</p>
+              </div>
+
+              <div className="flex flex-col items-end shrink-0">
+                <span className={`text-4xl md:text-5xl leading-none tabular-nums ${palette.statNumber}`}>
+                  <CountNumber to={m.value} start={inView} />%
+                </span>
+                <div className={`mt-3 h-[2px] w-16 rounded-full ${isLight ? "bg-neutral-200" : "bg-white/10"} overflow-hidden`}>
+                  <motion.div
+                    className={`h-full rounded-full ${palette.accentBar}`}
+                    initial={{ width: "0%" }}
+                    animate={inView ? { width: `${m.value}%` } : { width: "0%" }}
+                    transition={{ duration: 0.9, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="flex-1 flex lg:items-center">
         {/* Multiplayer card */}
         <motion.div
-          className={`relative ${palette.cardBg} rounded-3xl p-6 sm:p-10 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
+          className={`relative ${palette.cardBg} rounded-[2rem] p-8 sm:p-12 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
         >
-          <p className={`text-2xl sm:text-4xl leading-snug ${palette.cardTitle}`}>
-            We helped{" "}
+          <p className={`text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight ${palette.cardTitle}`}>
+            Kami membangun website yang siap digunakan{" "}
             <span className="relative inline-block align-baseline px-2 py-1 whitespace-nowrap">
               {/* sweep bar */}
               <motion.span
                 aria-hidden
-                className={`absolute inset-0 ${palette.sweepBar} rounded-sm origin-left`}
+                className={`absolute inset-0 ${palette.sweepBar} rounded-md origin-left`}
                 initial={{ scaleX: 0 }}
                 animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
                 transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
                 style={{ transformOrigin: "left center" }}
               />
               {/* base text */}
-              <span className={`relative font-medium whitespace-nowrap ${palette.baseText}`}>build marketing</span>
+              <span className={`relative font-semibold whitespace-nowrap ${palette.baseText}`}>hari ini</span>
               {/* overlay text revealed in sync with bar */}
               <motion.span
                 aria-hidden
-                className={`absolute inset-0 px-2 py-1 font-medium whitespace-nowrap ${palette.overlayText}`}
+                className={`absolute inset-0 px-2 py-1 font-semibold whitespace-nowrap ${palette.overlayText}`}
                 initial={{ clipPath: "inset(0 100% 0 0)" }}
                 animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
                 transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
               >
-                build marketing
+                hari ini
               </motion.span>
             </span>{" "}
-            and portfolio products
+            dan mudah dikembangkan di masa depan.
           </p>
           {/* Animated cursor */}
           <motion.div
@@ -128,14 +181,14 @@ export function StatsSection() {
             transition={cursorTransition}
           >
             <img src={blueArrowUrl} alt="" width={28} height={28} />
-            <span className="absolute top-[22px] left-[18px] whitespace-nowrap bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded-tr-md rounded-bl-md rounded-br-md">
-              Manager
+            <span className="absolute top-[22px] left-[18px] whitespace-nowrap bg-blue-500 text-white text-xs font-medium px-2.5 py-1 rounded-tr-lg rounded-bl-lg rounded-br-lg shadow-sm">
+              Beyond Team
             </span>
           </motion.div>
         </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 export default StatsSection;
-

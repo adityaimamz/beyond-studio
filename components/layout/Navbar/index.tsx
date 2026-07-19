@@ -15,7 +15,7 @@ export function Navbar() {
   return (
     <>
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10 transition-colors duration-300">
+      <header className="relative z-50 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10 transition-colors duration-300">
         <div className="flex items-center px-[20px] py-3.5 max-w-7xl mx-auto w-full">
           <a href="/" className="shrink-0 flex items-center gap-3 anim-rise" style={{ animationDelay: "480ms" }}>
             <img src={logoUrl} alt="Beyond Studio Logo" width={40} height={40} />

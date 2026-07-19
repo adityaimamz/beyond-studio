@@ -6,3 +6,4 @@ export * from "./input";
 export * from "./textarea";
 export * from "./select";
 export * from "./faq-monocrhome";
+export * from "./portfolio-section";
