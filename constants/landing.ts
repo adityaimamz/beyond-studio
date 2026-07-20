@@ -188,7 +188,7 @@ export const bsFaqList: FAQItem[] = [
 ];
 
 export const bsKontakContent = {
-  formCategories: ["UMKM/Bisnis", "Skripsi", "Personal/Freelancer"],
+  formCategories: ["Landing Page", "Company Profile", "Sistem Informasi", "Ecommerce", "Portofolio", "Skripsi", "Other"],
   whatsappNumberPlaceholder: "6281927070239",
   social: { instagram: "PLACEHOLDER_IG_URL", tiktok: "PLACEHOLDER_TIKTOK_URL" },
   footerCopyright: "Beyond Studio   2026",

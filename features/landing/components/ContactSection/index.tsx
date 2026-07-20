@@ -2,14 +2,14 @@
 
 import { GrainGradient } from "@paper-design/shaders-react";
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { WordsReveal } from "@/components/common";
-
-const WHATSAPP_NUMBER = "6281234567890";
+import { bsKontakContent } from "@/constants/landing";
 
 export function ContactSection() {
-  const [form, setForm] = useState({ name: "", contact: "", message: "" });
+  const [form, setForm] = useState({ name: "", category: "", message: "" });
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   function handleChange(field: keyof typeof form) {
@@ -20,8 +20,12 @@ export function ContactSection() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const text = `Halo Beyond Studio! Saya ${form.name || "seseorang"}.\n\nKontak: ${form.contact || "-"}\n\nKebutuhan: ${form.message || "-"}`;
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    if (!form.category) {
+      alert("Silakan pilih Kategori Layanan terlebih dahulu.");
+      return;
+    }
+    const text = `Halo Beyond Studio! Saya ${form.name || "seseorang"}.\n\nKategori: ${form.category}\n\nKebutuhan: ${form.message || "-"}`;
+    const url = `https://wa.me/${bsKontakContent.whatsappNumberPlaceholder}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
@@ -75,18 +79,44 @@ export function ContactSection() {
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="contact-contact" className="text-[10px] font-bold tracking-widest uppercase text-black/50 dark:text-white/50">
-                    Kontak
+                <label htmlFor="contact-category" className="text-[10px] font-bold tracking-widest uppercase text-black/50 dark:text-white/50">
+                    Kategori Layanan
                 </label>
-                <input
-                    id="contact-contact"
-                    type="text"
-                    required
-                    value={form.contact}
-                    onChange={handleChange("contact")}
-                    placeholder="Nomor WhatsApp atau email"
-                    className="w-full rounded-xl border border-black/10 bg-transparent px-4 py-3.5 text-sm text-black placeholder:text-black/30 outline-none transition-colors focus:bg-black/5 focus:border-black/30 dark:border-white/10 dark:text-white dark:placeholder:text-white/30 dark:focus:bg-white/5 dark:focus:border-white/30"
-                />
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                    className={`flex w-full items-center justify-between rounded-xl border border-black/10 bg-transparent px-4 py-3.5 text-sm outline-none transition-colors hover:bg-black/5 focus:border-black/30 focus:bg-black/5 dark:border-white/10 dark:hover:bg-white/5 dark:focus:border-white/30 dark:focus:bg-white/5 ${form.category === "" ? "text-black/30 dark:text-white/30" : "text-black dark:text-white"}`}
+                  >
+                    {form.category || "Pilih Kategori"}
+                    <ChevronDown className={`size-4 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  
+                  {isCategoryOpen && (
+                    <>
+                      <div className="fixed inset-0 z-10" onClick={() => setIsCategoryOpen(false)} />
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="absolute left-0 top-full z-20 mt-2 w-full overflow-hidden rounded-xl border border-black/10 bg-white p-1.5 shadow-xl dark:border-white/10 dark:bg-[#0a0a0a]"
+                      >
+                        {bsKontakContent.formCategories.map((cat) => (
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => {
+                              setForm((prev) => ({ ...prev, category: cat }));
+                              setIsCategoryOpen(false);
+                            }}
+                            className={`flex w-full items-center rounded-lg px-3 py-2.5 text-left text-sm transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${form.category === cat ? "bg-black/5 font-medium text-black dark:bg-white/5 dark:text-white" : "text-black/70 dark:text-white/70"}`}
+                          >
+                            {cat}
+                          </button>
+                        ))}
+                      </motion.div>
+                    </>
+                  )}
+                </div>
               </div>
 
               <div className="flex flex-col gap-2.5">
