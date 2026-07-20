@@ -4,6 +4,7 @@ import 'lenis/dist/lenis.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <SmoothScrollProvider>
             <ScrollIndicator />
             {children}
+            <ScrollToTop />
             <Analytics />
           </SmoothScrollProvider>
         </ThemeProvider>

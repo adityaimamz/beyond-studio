@@ -92,13 +92,11 @@ export function HeroSection() {
             </p>
             <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3 mb-[25px]">
               <a
-                href="https://wa.me/6281927070239?text=Halo%20Beyond%20Studio%2C%20saya%20ingin%20konsultasi%20mengenai%20pembuatan%20website"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#layanan"
                 className="flow-hover before:bg-white bg-blue-500 hover:text-blue-600 text-white text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center w-full sm:w-auto cursor-pointer anim-reveal-right"
                 style={{ animationDelay: "400ms", clipPath: "inset(0 100% 0 0)" }}
               >
-                Konsultasi via WhatsApp
+                Lihat Layanan
               </a>
               <a
                 href="#paket-harga"

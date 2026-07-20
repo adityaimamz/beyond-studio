@@ -28,52 +28,52 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    id: "landing-page",
-    icon: LayoutTemplate,
-    category: "Landing Page",
-    title: "Landing Page Promo Produk Skincare Lokal",
-    description:
-      "Halaman promosi satu produk dengan fokus konversi   dari headline sampai CTA checkout, semua dirancang buat mempercepat keputusan beli.",
-    domain: "skincarelokal.id",
-    imageUrl: "/assets/Landing Page.png",
-    imageAlt:
-      "Screenshot landing page produk skincare dengan hero section dan tombol checkout",
-  },
-  {
-    id: "company-profile",
-    icon: Building2,
-    category: "Company Profile",
-    title: "Company Profile Studio Fotografi",
-    description:
-      "Website multi halaman menampilkan portofolio jasa, paket harga, dan galeri karya   dibangun supaya klien percaya sejak kunjungan pertama.",
-    domain: "studiofotografi.id",
-    imageUrl: "/assets/Company Profile.png",
-    imageAlt:
-      "Screenshot company profile studio fotografi dengan galeri portofolio dan paket layanan",
-  },
-  {
-    id: "sistem-informasi",
-    icon: LayoutDashboard,
-    category: "Sistem Informasi",
-    title: "Sistem Booking Studio Musik",
-    description:
-      "Sistem reservasi ruang latihan dengan kalender real-time, login multi-role, dan dashboard admin buat pantau jadwal harian.",
-    domain: "app.studiomusik.id",
-    imageUrl: "/assets/Sistem Informasi.png",
-    imageAlt:
-      "Screenshot dashboard sistem booking studio musik dengan kalender jadwal dan manajemen ruangan",
-  },
-  {
-    id: "ecommerce",
+    id: "e-commerce",
     icon: ShoppingCart,
     category: "E-Commerce",
-    title: "Toko Online Fashion Lokal",
+    title: "E-Catalog Grosir Pakaian Anggajaya",
     description:
-      "Toko online lengkap dengan payment gateway, manajemen stok, dan ongkir otomatis   dari checkout sampai konfirmasi pembayaran.",
-    domain: "fashionlokal.co.id",
-    imageUrl: "/assets/Portofolio Ui.png",
+      "Website e-commerce untuk bisnis grosir pakaian yang memungkinkan pelanggan menjelajahi katalog produk secara mudah, melihat detail setiap produk, dan melakukan pemesanan langsung melalui WhatsApp. Dibangun dengan desain modern, navigasi yang intuitif, serta dioptimalkan agar responsif di berbagai perangkat.",
+    domain: "anggajaya.com",
+    imageUrl: "/images/portfolio/anggajaya.jpeg",
     imageAlt:
-      "Screenshot toko online fashion dengan katalog produk, keranjang belanja, dan payment gateway",
+      "Screenshot website e-commerce grosir pakaian Anggajaya dengan katalog produk dan sistem pemesanan online.",
+  },
+  {
+    id: "web-application",
+    icon: Building2,
+    category: "Web Application",
+    title: "Website Baca Light Novel Online",
+    description:
+      "Platform membaca light novel berbasis web yang menghadirkan pengalaman membaca nyaman dengan koleksi novel yang terorganisir berdasarkan genre dan kategori. Dilengkapi fitur pencarian, autentikasi pengguna, bookmark, serta antarmuka yang responsif untuk desktop maupun perangkat mobile.",
+    domain: "celestialscrolls.site",
+    imageUrl: "/images/portfolio/celestialscrolls.jpeg",
+    imageAlt:
+      "Screenshot platform membaca light novel online Celestial Scrolls dengan katalog novel dan halaman pembaca.",
+  },
+  {
+    id: "portfolio-ui",
+    icon: LayoutDashboard,
+    category: "Portfolio Website",
+    title: "Website Portfolio",
+    description:
+      "Website portofolio profesional yang dirancang untuk menampilkan profil, pengalaman, keahlian, dan hasil karya secara elegan. Mengutamakan desain modern, performa cepat, serta tata letak yang memudahkan calon klien atau recruiter mengenal pemilik portofolio.",
+    domain: "izaditya.my.id",
+    imageUrl: "/images/portfolio/izaditya.jpeg",
+    imageAlt:
+      "Screenshot website portofolio profesional dengan tampilan modern dan responsif.",
+  },
+  {
+    id: "academic",
+    icon: LayoutTemplate,
+    category: "Academic Project",
+    title: "Sistem Pakar Masalah Penyakit Kulit Wajah",
+    description:
+      "Aplikasi sistem pakar berbasis web yang membantu pengguna mengidentifikasi kemungkinan penyakit kulit wajah melalui proses konsultasi interaktif. Menggunakan metode inferensi untuk memberikan hasil diagnosis beserta rekomendasi penanganan awal secara cepat dan mudah dipahami.",
+    domain: "sistempakar.my.id",
+    imageUrl: "/images/portfolio/sistempakar.jpeg",
+    imageAlt:
+      "Screenshot sistem pakar diagnosis penyakit kulit wajah dengan fitur konsultasi dan hasil analisis.",
   },
 ];
 
@@ -115,7 +115,7 @@ function AnimatedHeader() {
           transition-all duration-500 ease-out motion-reduce:transition-none
           ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
-        Hasil Kerja Nyata
+        Portfolio
       </div>
       <h2
         className={`text-4xl md:text-5xl font-bold leading-[1.15] text-foreground mb-4

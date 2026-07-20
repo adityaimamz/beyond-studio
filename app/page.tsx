@@ -38,9 +38,6 @@ export default function Index() {
       <div className={`relative w-full z-[5] overflow-visible transition-colors duration-700 ${theme === "dark" ? "text-neutral-100" : "text-neutral-900"}`}>
         <div className="pointer-events-none absolute inset-x-0 -top-56 bottom-0 z-0 md:-top-80 lg:-top-96" style={{ maskImage: "linear-gradient(to bottom, transparent, black 15%, black)", WebkitMaskImage: "linear-gradient(to bottom, transparent, black 15%, black)" }}>
           <div className="absolute inset-0" style={{ background: aurora.background }} />
-          {/* Overlay opacity-only (tanpa mix-blend-mode) - blend-mode di area seluas ini
-              (membungkus Testimoni + FAQ) mahal untuk di-composite saat scroll,
-              apalagi berdekatan dengan marquee testimoni yang terus bergerak. */}
           <div
             className="absolute inset-0 opacity-60"
             style={{ background: aurora.overlay }}

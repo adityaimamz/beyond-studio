@@ -19,6 +19,17 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
 
   const isSkripsi = plan.title.toLowerCase().includes("skripsi") || plan.ctaLabel === "Tanya Detail";
 
+  let pricePrefix = "";
+  let priceAmount = plan.price;
+
+  if (plan.price.includes("Rp")) {
+    const parts = plan.price.split("Rp");
+    if (parts[0].trim() !== "") {
+      pricePrefix = parts[0].trim();
+      priceAmount = "Rp" + parts[1];
+    }
+  }
+
   return (
     <motion.div
       className={`relative overflow-hidden flex flex-col justify-between bg-white/40 backdrop-blur-sm p-8 rounded-2xl h-full transition-[transform,box-shadow,border-color,background-color] duration-300 hover:scale-[1.01] hover:shadow-md ${plan.featured
@@ -46,8 +57,11 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
         <h3 className="text-xl font-bold text-stone-900 mb-2 mt-2">{plan.title}</h3>
 
         {/* Price Row */}
-        <div className="flex items-baseline gap-1 mt-3">
-          <span className="text-3xl font-extrabold text-stone-950">{plan.price}</span>
+        <div className="flex items-baseline gap-1.5 mt-3 flex-wrap">
+          {pricePrefix && (
+            <span className="text-lg font-semibold text-stone-950/70">{pricePrefix}</span>
+          )}
+          <span className="text-3xl font-extrabold text-stone-950">{priceAmount}</span>
         </div>
 
         {/* Description */}
