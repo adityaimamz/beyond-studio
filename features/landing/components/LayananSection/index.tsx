@@ -27,13 +27,13 @@ const CARD_META: Record<
     imageHeight: string;
   }
 > = {
-  "sistem-informasi": {
+  "web-application": {
     icon: LayoutDashboard,
     accent: "#D0C9B9",
     image: layananMockups.sistemInformasi,
     imageHeight: "h-[220px] md:h-[260px]",
   },
-  "portofolio": {
+  "portfolio": {
     icon: Layers,
     accent: "#F7C8FF",
     image: layananMockups.portofolio,
@@ -45,19 +45,19 @@ const CARD_META: Record<
     image: layananMockups.ecommerce,
     imageHeight: "h-[190px] md:h-[210px]",
   },
-  "company-profile": {
+  "business-website": {
     icon: Building2,
     accent: "#3B82F6",
     image: layananMockups.companyProfile,
     imageHeight: "h-[160px] md:h-[180px]",
   },
-  "landing-page": {
+  "custom-solution": {
     icon: LayoutTemplate,
     accent: "#3B82F6",
     image: layananMockups.landingPage,
     imageHeight: "h-[160px] md:h-[180px]",
   },
-  "paket-skripsi": {
+  "academic-project": {
     icon: GraduationCap,
     accent: "#3B82F6",
     image: layananMockups.skripsi,
@@ -66,12 +66,12 @@ const CARD_META: Record<
 };
 
 const CARD_DELAYS: Record<string, number> = {
-  "sistem-informasi": 0.1,
-  "portofolio": 0.2,
-  "landing-page": 0.3,
-  "company-profile": 0.4,
+  "web-application": 0.1,
+  "portfolio": 0.2,
+  "custom-solution": 0.3,
+  "business-website": 0.4,
   "e-commerce": 0.5,
-  "paket-skripsi": 0.6,
+  "academic-project": 0.6,
 };
 
 function SectionHeader() {
@@ -148,7 +148,7 @@ function LayananCardComponent({ card }: { card: LayananCard }) {
           />
           <WordsReveal
             as="p"
-            className="text-sm text-neutral-400 leading-relaxed max-w-[36ch]"
+            className="text-sm text-neutral-400 leading-relaxed"
             text={card.description}
             delay={delay + 0.3}
             step={0.03}

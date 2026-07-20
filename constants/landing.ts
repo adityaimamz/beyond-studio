@@ -92,12 +92,12 @@ export const bsKenapaPilihKami = {
 
 export interface LayananItem { icon: string; title: string; description: string; }
 export const bsLayananList: LayananItem[] = [
-  { icon: "LayoutTemplate", title: "Landing Page", description: "Satu halaman fokus untuk memperkenalkan produk atau jasamu ke calon pelanggan." },
-  { icon: "Building2", title: "Company Profile", description: "Beberapa halaman lengkap untuk membangun kredibilitas bisnismu di depan klien." },
-  { icon: "LayoutDashboard", title: "Sistem Informasi", description: "Sistem custom sesuai alur kerja bisnismu - booking, inventaris, absensi, dashboard admin, sampai kebutuhan spesifik lainnya." },
-  { icon: "ShoppingCart", title: "E-Commerce (Toko Online)", description: "Toko online lengkap dengan payment gateway dan pengelolaan produk yang gampang di-update." },
-  { icon: "UserCircle", title: "Portofolio Website", description: "Etalase karya dan CV online untuk freelancer atau profesional yang ingin tampil meyakinkan." },
-  { icon: "GraduationCap", title: "Paket Skripsi / Tugas Akhir", description: "Bantuan pengerjaan sistem atau aplikasi web sesuai judul skripsimu." },
+  { icon: "Building2", title: "Business Website", description: "Website profesional untuk memperkenalkan bisnis, jasa, atau personal branding. Cocok untuk: Company Profile, Landing Page, Website Jasa, UMKM, dan Personal Branding." },
+  { icon: "ShoppingCart", title: "E-Commerce", description: "Website toko online lengkap untuk menjual produk secara profesional. Cocok untuk: Fashion, Kuliner, Grosir, dan Toko Online." },
+  { icon: "LayoutDashboard", title: "Web Application", description: "Aplikasi web custom sesuai kebutuhan bisnis. Cocok untuk: Dashboard, Sistem Informasi, Booking, Inventory, POS, ERP, HRIS, CRM, LMS, Portal, dan Platform Digital." },
+  { icon: "UserCircle", title: "Portfolio Website", description: "Website personal untuk freelancer dan profesional. Cocok untuk: Programmer, Designer, Photographer, Freelancer, dan CV Online." },
+  { icon: "GraduationCap", title: "Academic Project", description: "Pembuatan aplikasi web untuk kebutuhan akademik. Cocok untuk: Skripsi, Tugas Akhir, Prototype, dan Penelitian." },
+  { icon: "LayoutTemplate", title: "Custom Solution", description: "Untuk kebutuhan yang tidak masuk kategori paket lainnya. Contoh: AI Integration, Automation, API Development, dan lain-lain." },
 ];
 
 export interface PaketHarga {
@@ -334,12 +334,12 @@ export interface LayananCard {
   gridArea: "step" | "account" | "trusted" | "loan" | "deals" | "track";
 }
 export const bsLayananCards: LayananCard[] = [
-  { id: "sistem-informasi", title: "Sistem Informasi", description: "Sistem custom sesuai alur kerja bisnismu - booking, inventaris, absensi, dashboard admin, sampai kebutuhan spesifik lainnya.", size: "large", style: "dark", mockupImage: "sistemInformasi", floatingStat: { value: "142", label: "Booking Bulan Ini", trend: "+18%" }, gridArea: "step" },
-  { id: "portofolio", title: "Portofolio Website", description: "Etalase karya dan CV online untuk freelancer atau profesional yang ingin tampil meyakinkan.", size: "large", style: "dark", floatingStat: { value: "80+", label: "Freelancer Sudah Pakai" }, gridArea: "account" },
-  { id: "landing-page", title: "Landing Page", description: "Satu halaman fokus untuk memperkenalkan produk atau jasamu ke calon pelanggan.", size: "small", style: "dark", icon: "LayoutTemplate", mockupImage: "landingPage", floatingStat: { value: "3 Hari", label: "Live" }, gridArea: "deals" },
-  { id: "company-profile", title: "Company Profile", description: "Beberapa halaman lengkap untuk membangun kredibilitas bisnismu di depan klien.", size: "small", style: "dark", icon: "Building2", mockupImage: "companyProfile", floatingStat: { value: "5", label: "Halaman" }, gridArea: "loan" },
-  { id: "e-commerce", title: "E-Commerce (Toko Online)", description: "Toko online lengkap dengan payment gateway dan pengelolaan produk yang gampang di-update.", size: "small", style: "beige", icon: "ShoppingCart", floatingStat: { value: "1,250", label: "Pesanan/Bulan", trend: "+9.87%" }, gridArea: "trusted" },
-  { id: "paket-skripsi", title: "Paket Skripsi / Tugas Akhir", description: "Bantuan pengerjaan sistem atau aplikasi web sesuai judul skripsimu.", size: "small", style: "dark", icon: "GraduationCap", badge: "Khusus Mahasiswa", mockupImage: "paketSkripsi", floatingStat: { value: "50+", label: "Mahasiswa Terbantu" }, gridArea: "track" },
+  { id: "web-application", title: "Web Application", description: "Aplikasi web custom sesuai kebutuhan bisnis. Cocok untuk: Dashboard, Sistem Informasi, Booking, Inventory, POS, ERP, HRIS, CRM, LMS, Portal, dan Platform Digital (misalnya Celestial Scrolls).", size: "large", style: "dark", mockupImage: "sistemInformasi", floatingStat: { value: "Custom", label: "Sesuai Kebutuhan" }, gridArea: "step" },
+  { id: "portfolio", title: "Portfolio Website", description: "Website personal untuk freelancer dan profesional. Cocok untuk: Programmer, Designer, Photographer, Freelancer, dan CV Online.", size: "large", style: "dark", floatingStat: { value: "80+", label: "Profesional Sudah Pakai" }, gridArea: "account" },
+  { id: "custom-solution", title: "Custom Solution", description: "Untuk kebutuhan yang tidak masuk kategori paket lainnya. Contoh: AI Integration, Automation, API Development, Dashboard Analytics, Internal Company System, Maintenance Website, serta Integrasi Payment, WhatsApp, dan ERP.", size: "small", style: "dark", icon: "LayoutTemplate", mockupImage: "landingPage", floatingStat: { value: "Konsultasi", label: "Gratis" }, gridArea: "deals" },
+  { id: "business-website", title: "Business Website", description: "Website profesional untuk memperkenalkan bisnis, jasa, atau personal branding. Cocok untuk: Company Profile, Landing Page, Website Jasa, UMKM, dan Personal Branding.", size: "small", style: "dark", icon: "Building2", mockupImage: "companyProfile", floatingStat: { value: "5", label: "Halaman" }, gridArea: "loan" },
+  { id: "e-commerce", title: "E-Commerce", description: "Website toko online lengkap untuk menjual produk secara profesional. Cocok untuk: Fashion, Kuliner, Grosir, dan Toko Online.", size: "small", style: "beige", icon: "ShoppingCart", floatingStat: { value: "50", label: "Katalog Produk" }, gridArea: "trusted" },
+  { id: "academic-project", title: "Academic Project", description: "Pembuatan aplikasi web untuk kebutuhan akademik. Cocok untuk: Skripsi, Tugas Akhir, Prototype, dan Penelitian.", size: "small", style: "dark", icon: "GraduationCap", badge: "Khusus Mahasiswa", mockupImage: "paketSkripsi", floatingStat: { value: "50+", label: "Mahasiswa Terbantu" }, gridArea: "track" },
 ];
 export const bsLayananHeader = {
   eyebrow: "Kerja Cepat, Tanpa Ribet",           // reuse existing top-right small label pattern
