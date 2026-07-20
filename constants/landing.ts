@@ -70,7 +70,7 @@ export interface HeroContent {
 export const bsHeroContent: HeroContent = {
   badge: "DAFTAR HARGA LENGKAP & TRANSPARAN",
   headline: "Website Custom untuk Bisnis, Skripsi, dan Proyek Pribadi",
-  subheadline: "Proses cepat, harga transparan, konsultasi gratis sebelum kamu memutuskan.",
+  subheadline: "Proses cepat, harga transparan, konsultasi gratis sebelum anda memutuskan.",
   ctaPrimary: { label: "Konsultasi via WhatsApp", href: "#contact" },
   ctaSecondary: { label: "Cek Paket Harga", href: "#paket-harga" },
 };
@@ -179,10 +179,10 @@ export const bsTestimoniHeader = {
 
 export interface FAQItem { question: string; answer: string; }
 export const bsFaqList: FAQItem[] = [
-  { question: "Berapa lama pengerjaan website?", answer: "Waktu pengerjaan disepakati di tahap penawaran, tergantung kompleksitas paket yang kamu pilih." },
+  { question: "Berapa lama pengerjaan website?", answer: "Waktu pengerjaan disepakati di tahap penawaran, tergantung kompleksitas paket yang anda pilih." },
   { question: "Apakah bisa konsultasi dulu sebelum bayar?", answer: "Bisa. Konsultasi kebutuhan awal lewat WhatsApp atau formulir sepenuhnya gratis, sebelum ada kesepakatan apa pun." },
   { question: "Apakah paket skripsi termasuk bimbingan teknis ke dosen?", answer: "Paket skripsi mencakup konsultasi teknis pengerjaan sistem, bukan pendampingan langsung ke dosen pembimbing." },
-  { question: "Apa bedanya Sistem Informasi biasa dengan Paket Skripsi?", answer: "Sistem Informasi biasa ditujukan untuk kebutuhan bisnis operasional, sedangkan Paket Skripsi disesuaikan dengan judul dan kebutuhan akademik kamu." },
+  { question: "Apa bedanya Sistem Informasi biasa dengan Paket Skripsi?", answer: "Sistem Informasi biasa ditujukan untuk kebutuhan bisnis operasional, sedangkan Paket Skripsi disesuaikan dengan judul dan kebutuhan akademik anda." },
   { question: "Apakah ada garansi revisi?", answer: "Revisi tersedia sesuai ketentuan masing-masing paket dan kesepakatan di awal." },
   { question: "Apakah harga sudah termasuk domain dan hosting?", answer: "Sebagian paket sudah termasuk free domain dan/atau hosting - detailnya tercantum di fitur tiap paket." },
 ];
@@ -195,7 +195,7 @@ export const bsKontakContent = {
 };
 
 export const bsFooterContent = {
-  headline: "Siap Bangun Website Kamu?",
+  headline: "Siap Bangun Website anda?",
   description: "Kami bikin website profesional, sistem informasi custom, dan bantu pengerjaan skripsi - dengan proses transparan, pengerjaan cepat, dan revisi sesuai kesepakatan.",
 };
 
@@ -249,7 +249,7 @@ export const bsLayananCards: LayananCard[] = [
 ];
 export const bsLayananHeader = {
   eyebrow: "Kerja Cepat, Tanpa Ribet",           // reuse existing top-right small label pattern
-  headline: "6 Layanan untuk Setiap Kebutuhan Websitemu",
+  headline: "6 Layanan untuk Setiap Kebutuhan Website Anda",
   cta: { label: "Konsultasi Gratis", href: "#contact" },  // replaces "Join beta now"
 };
 

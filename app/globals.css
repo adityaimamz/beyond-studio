@@ -3,7 +3,13 @@
 @import "../styles/animations.css";
 
 @custom-variant dark (&:is(.dark *));
-@custom-variant hover (@media (hover: hover) and (pointer: fine) { &:hover });
+@custom-variant hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+}
 
 @theme inline {
   --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
@@ -75,5 +81,18 @@
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
     transition: background-color 500ms ease, color 500ms ease;
+  }
+}
+
+@layer utilities {
+  .flow-hover {
+    @apply relative z-0 overflow-hidden transition-colors duration-500;
+  }
+  .flow-hover::before {
+    content: "";
+    @apply absolute inset-0 -z-10 translate-x-[150%] translate-y-[150%] scale-[2.5] rounded-[100%] transition-transform duration-1000;
+  }
+  .flow-hover:hover::before {
+    @apply translate-x-0 translate-y-0;
   }
 }

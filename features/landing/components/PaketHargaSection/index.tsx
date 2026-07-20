@@ -75,9 +75,9 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
       <div className="mt-8">
         <a
           href="#contact"
-          className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center block transition-[background-color,transform,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.97] cursor-pointer text-sm shadow-xs ${isSkripsi
-              ? "bg-transparent text-stone-950 border border-stone-950 hover:bg-stone-950/10"
-              : "bg-stone-950 text-white hover:bg-stone-800 hover:shadow-md"
+          className={`flow-hover w-full py-3.5 px-4 rounded-xl font-semibold text-center block active:scale-[0.97] cursor-pointer text-sm shadow-xs ${isSkripsi
+              ? "bg-transparent text-stone-950 border border-stone-950 hover:text-white before:bg-stone-950"
+              : "bg-stone-950 text-white hover:text-stone-950 before:bg-white"
             }`}
         >
           {plan.ctaLabel}

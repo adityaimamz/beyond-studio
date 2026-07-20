@@ -192,18 +192,16 @@ export function PillTagsSection() {
             Alur Kerja Kami
           </Badge>
           <h2
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] ${
-              isDark ? "text-white" : "text-neutral-900"
-            }`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.1] ${isDark ? "text-white" : "text-neutral-900"
+              }`}
           >
             Proses Transparan dari Awal Hingga Live.
           </h2>
           <p
-            className={`text-lg md:text-xl leading-relaxed max-w-[65ch] mt-2 ${
-              isDark ? "text-neutral-400" : "text-neutral-600"
-            }`}
+            className={`text-lg md:text-xl leading-relaxed max-w-[65ch] mt-2 ${isDark ? "text-neutral-400" : "text-neutral-600"
+              }`}
           >
-            Setiap proyek mengikuti alur kerja yang jelas. Kamu selalu tahu apa
+            Setiap proyek mengikuti alur kerja yang jelas. Anda selalu tahu apa
             yang sedang dikerjakan, kapan target selesai, dan apa langkah
             selanjutnya.
           </p>

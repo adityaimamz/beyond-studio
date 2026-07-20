@@ -15,7 +15,7 @@ export function FaqSection({ hideBackground = false }: { hideBackground?: boolea
       items={bsFaqList}
       introLabel="FAQ"
       eyebrow="Pertanyaan"
-      title="Jawaban yang jelas sebelum kamu mulai."
+      title="Jawaban yang jelas sebelum anda mulai."
       description="Hal-hal yang sering ditanyakan tentang paket, timeline, revisi, dan proses kerja Beyond Studio   ringkas dan transparan."
     />
   );

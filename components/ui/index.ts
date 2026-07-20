@@ -7,3 +7,4 @@ export * from "./textarea";
 export * from "./select";
 export * from "./faq-monocrhome";
 export * from "./portfolio-section";
+export * from "./flow-hover-button";

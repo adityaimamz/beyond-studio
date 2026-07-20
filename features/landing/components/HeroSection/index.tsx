@@ -88,21 +88,21 @@ export function HeroSection() {
               <StaggeredWords text="Solusi Website Custom untuk Bisnis, Skripsi, dan Personal" baseDelay={300} step={54} />
             </h1>
             <p className="relative z-10 text-base sm:text-2xl opacity-60 text-neutral-100 w-[634px] max-w-full leading-snug mb-[24px] sm:mb-[30px] word-stagger">
-              <StaggeredWords text="Proses cepat, harga transparan, dan konsultasi gratis sebelum kamu order." baseDelay={900} step={33} />
+              <StaggeredWords text="Proses cepat, harga transparan, dan konsultasi gratis sebelum anda order." baseDelay={900} step={33} />
             </p>
             <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3 mb-[25px]">
               <a
                 href="https://wa.me/6281927070239?text=Halo%20Beyond%20Studio%2C%20saya%20ingin%20konsultasi%20mengenai%20pembuatan%20website"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center transition-colors w-full sm:w-auto cursor-pointer anim-reveal-right"
+                className="flow-hover before:bg-white bg-blue-500 hover:text-blue-600 text-white text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center w-full sm:w-auto cursor-pointer anim-reveal-right"
                 style={{ animationDelay: "400ms", clipPath: "inset(0 100% 0 0)" }}
               >
                 Konsultasi via WhatsApp
               </a>
               <a
                 href="#paket-harga"
-                className="bg-white/5 hover:bg-white/10 outline outline-[1.30px] outline-white/10 text-neutral-100 text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center transition-colors w-full sm:w-auto cursor-pointer anim-reveal-right"
+                className="flow-hover before:bg-neutral-100 bg-white/5 hover:text-stone-950 outline outline-[1.30px] outline-white/10 text-neutral-100 text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center w-full sm:w-auto cursor-pointer anim-reveal-right"
                 style={{ animationDelay: "550ms", clipPath: "inset(0 100% 0 0)" }}
               >
                 Lihat Paket Harga
@@ -129,19 +129,19 @@ export function HeroSection() {
                     <img key="d2" src={dash02.url} alt="Images and fill" className="h-[34px] w-auto object-contain object-left ml-2" />,
                     <div key="tools" className="flex items-center gap-3 h-9 px-2 text-neutral-300 text-sm">
                       <span className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m14.7 6.3 3 3"/><path d="M3 21v-3l11-11 3 3L6 21z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m14.7 6.3 3 3" /><path d="M3 21v-3l11-11 3 3L6 21z" /></svg>
                       </span>
                       Tools
                     </div>,
                     <div key="cards" className="flex items-center gap-3 h-[46px] px-1 rounded-lg bg-white/[0.08] outline outline-1 outline-white/5">
                       <span className="w-9 h-9 ml-1 rounded-lg bg-blue-500 flex items-center justify-center">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /></svg>
                       </span>
                       <span className="text-sm text-neutral-100">Cards</span>
                     </div>,
                     <div key="add" className="flex items-center gap-3 h-9 px-2 text-neutral-300 text-sm">
                       <span className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="M12 5v14" /></svg>
                       </span>
                       Add more
                     </div>,
@@ -255,11 +255,10 @@ export function HeroSection() {
 
       {/* Dynamic bottom gradient */}
       <div
-        className={`absolute bottom-0 left-0 w-full h-[300px] pointer-events-none z-50 transition-colors duration-500 ${
-          theme === "light"
+        className={`absolute bottom-0 left-0 w-full h-[300px] pointer-events-none z-50 transition-colors duration-500 ${theme === "light"
             ? "bg-gradient-to-t from-white via-white/90 to-transparent"
             : "bg-gradient-to-t from-black via-black/90 to-transparent"
-        }`}
+          }`}
       />
     </div>
   );

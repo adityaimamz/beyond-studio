@@ -38,14 +38,18 @@ const palettes = {
 
 const METRICS = [
   {
-    label: "Tingkat referral",
-    value: 47,
-    desc: "klien datang dari rekomendasi klien lama",
+    label: "Kepercayaan Pertama",
+    value: 94,
+    suffix: "%",
+    progress: 94,
+    desc: "Kesan pertama soal kredibilitas bisnis dibentuk dari tampilan website, sebelum orang baca satu kalimat pun.",
   },
   {
-    label: "Kecepatan pengerjaan",
-    value: 63,
-    desc: "lebih cepat live dibanding standar agensi",
+    label: "Respon Lebih Cepat",
+    value: 2,
+    suffix: "x",
+    progress: 100,
+    desc: "Klien kami rata-rata dapat pertanyaan atau chat masuk lebih cepat setelah website live, karena orang nggak perlu nanya-nanya dulu, semua sudah jelas di website.",
   },
 ];
 
@@ -97,7 +101,7 @@ export function StatsSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
-          Kami fokus pada komunikasi transparan, pengembangan kustom, dan kode yang bersih. Bukan sekadar membuat website, tapi membangun aset digital yang mudah dikembangkan di masa depan.
+          Kami memahami bahwa setiap bisnis memiliki kebutuhan yang berbeda. Oleh karena itu, kami mengutamakan komunikasi yang transparan dan proses pengembangan yang disesuaikan, guna menghasilkan website yang benar-benar mendukung tujuan bisnis Anda.
         </motion.p>
       </div>
 
@@ -122,13 +126,13 @@ export function StatsSection() {
 
               <div className="flex flex-col items-end shrink-0">
                 <span className={`text-4xl md:text-5xl leading-none tabular-nums ${palette.statNumber}`}>
-                  <CountNumber to={m.value} start={inView} />%
+                  <CountNumber to={m.value} start={inView} />{m.suffix}
                 </span>
                 <div className={`mt-3 h-[2px] w-16 rounded-full ${isLight ? "bg-neutral-200" : "bg-white/10"} overflow-hidden`}>
                   <motion.div
                     className={`h-full rounded-full ${palette.accentBar} origin-left`}
                     initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
-                    animate={inView ? { scaleX: m.value / 100 } : { scaleX: 0 }}
+                    animate={inView ? { scaleX: m.progress / 100 } : { scaleX: 0 }}
                     transition={{ duration: 0.9, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     style={{ transformOrigin: "left" }}
                   />
@@ -148,7 +152,7 @@ export function StatsSection() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           >
             <p className={`text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight ${palette.cardTitle}`}>
-              Kami membangun website yang siap digunakan{" "}
+              Kami nggak cuma serah terima file terus menghilang. Begitu website live,{" "}
               <span className="relative inline-block align-baseline px-2 py-1 whitespace-nowrap">
                 {/* sweep bar */}
                 <motion.span
@@ -160,7 +164,7 @@ export function StatsSection() {
                   style={{ transformOrigin: "left center" }}
                 />
                 {/* base text */}
-                <span className={`relative font-semibold whitespace-nowrap ${palette.baseText}`}>hari ini</span>
+                <span className={`relative font-semibold whitespace-nowrap ${palette.baseText}`}>kami masih di sini</span>
                 {/* overlay text revealed in sync with bar */}
                 <motion.span
                   aria-hidden
@@ -169,10 +173,10 @@ export function StatsSection() {
                   animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
                   transition={{ duration: 0.91, delay: 1.55, ease: [0.23, 1, 0.32, 1] }}
                 >
-                  hari ini
+                  kami masih di sini
                 </motion.span>
-              </span>{" "}
-              dan mudah dikembangkan di masa depan.
+              </span>
+              siap membantu berkembang sesuai bisnis anda tumbuh.
             </p>
             {/* Animated cursor */}
             <motion.div
