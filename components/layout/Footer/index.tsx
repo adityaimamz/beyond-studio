@@ -41,7 +41,8 @@ export function Footer() {
   };
 
   return (
-    <footer ref={ref} className="relative w-full overflow-hidden bg-background px-6 md:px-10 pb-12">
+    <footer ref={ref} className="relative w-full overflow-hidden bg-background pb-12">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
       <div className="flex flex-wrap justify-between gap-20 mt-28">
         {/* LEFT: headline + description */}
         <div className="max-w-xl">
@@ -163,6 +164,7 @@ export function Footer() {
         >
           {bsKontakContent.footerCopyright}
         </span>
+      </div>
       </div>
     </footer>
   );

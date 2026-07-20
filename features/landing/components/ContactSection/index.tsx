@@ -1,278 +1,157 @@
 "use client";
 
-import type * as React from "react";
+import { GrainGradient } from "@paper-design/shaders-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, CheckCheck } from "lucide-react";
-import { useTheme } from "@/components/providers/ThemeProvider";
-import { Badge } from "@/components/ui";
+import { MessageCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { WordsReveal } from "@/components/common";
 
-// TODO: ganti dengan nomor WhatsApp bisnis asli (format 62xxxxxxxxxx, tanpa "+" atau "0" di depan)
 const WHATSAPP_NUMBER = "6281234567890";
 
-const palettes = {
-    dark: {
-        sectionBg: "bg-black",
-        heading: "text-white",
-        sub: "text-neutral-400",
-        label: "text-neutral-400",
-        inputBg: "bg-white/5",
-        inputBorder: "border-white/10",
-        inputFocus: "focus:border-primary-hover/70",
-        inputText: "text-neutral-100",
-        placeholder: "placeholder:text-neutral-500",
-        cardBg: "bg-neutral-900/60",
-        cardBorder: "border-white/10",
-        divider: "bg-white/10",
-        monoLabel: "text-white/40",
-        valueText: "text-neutral-100",
-        eyebrow: "text-primary-hover font-medium",
-        bubbleInBg: "bg-white/[0.06]",
-        bubbleInBorder: "border-white/10",
-        bubbleInText: "text-neutral-300",
-        timestamp: "text-neutral-500",
-    },
-    light: {
-        sectionBg: "bg-slate-50",
-        heading: "text-neutral-900",
-        sub: "text-neutral-600",
-        label: "text-neutral-500",
-        inputBg: "bg-white",
-        inputBorder: "border-neutral-200",
-        inputFocus: "focus:border-primary/70",
-        inputText: "text-neutral-900",
-        placeholder: "placeholder:text-neutral-400",
-        cardBg: "bg-white",
-        cardBorder: "border-neutral-200/80",
-        divider: "bg-neutral-200",
-        monoLabel: "text-neutral-400",
-        valueText: "text-neutral-900",
-        eyebrow: "text-primary font-semibold",
-        bubbleInBg: "bg-neutral-100",
-        bubbleInBorder: "border-neutral-200",
-        bubbleInText: "text-neutral-700",
-        timestamp: "text-neutral-400",
-    },
-} as const;
-
-const ACCENT = "#3B82F6";
-
 export function ContactSection() {
-    const { theme } = useTheme();
-    const isLight = theme === "light";
-    const palette = palettes[isLight ? "light" : "dark"];
+  const [form, setForm] = useState({ name: "", contact: "", message: "" });
+  const shouldReduceMotion = useReducedMotion();
 
-    const [form, setForm] = useState({ name: "", contact: "", message: "" });
+  function handleChange(field: keyof typeof form) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+  }
 
-    function handleChange(field: keyof typeof form) {
-        return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            setForm((prev) => ({ ...prev, [field]: e.target.value }));
-        };
-    }
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const text = `Halo Beyond Studio! Saya ${form.name || "seseorang"}.\n\nKontak: ${form.contact || "-"}\n\nKebutuhan: ${form.message || "-"}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const text = `Halo Beyond Studio! Saya ${form.name || "seseorang"}.\n\nKontak: ${form.contact || "-"}\n\nKebutuhan: ${form.message || "-"}`;
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-        window.open(url, "_blank", "noopener,noreferrer");
-    }
-
-    return (
-        <section className={`${palette.sectionBg} py-24 md:py-32 transition-colors duration-500`} id="contact">
-            <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
-                {/* Left   headline + form */}
-                <motion.div
-                    className="lg:col-span-7 flex flex-col gap-9 items-center text-center lg:items-start lg:text-left"
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    <div className="flex flex-col gap-5 items-center lg:items-start">
-                        <Badge className="w-fit uppercase tracking-wider">
-                            Hubungi Kami
-                        </Badge>
-                        <h2 className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tighter leading-[1.1] ${palette.heading}`}>
-                            Mulai Proyekmu,
-                            <br />
-                            Tanpa Basa-basi.
-                        </h2>
-                        <p className={`text-lg md:text-xl leading-relaxed max-w-[48ch] ${palette.sub}`}>
-                            Isi form singkat ini, kami balas langsung lewat WhatsApp   biasanya dalam hitungan menit, bukan hari.
-                        </p>
-                    </div>
-
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-[520px] w-full text-left mx-auto lg:mx-0">
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="contact-name" className={`text-[11px] font-medium tracking-[0.05em] uppercase ${palette.label}`}>
-                                Nama
-                            </label>
-                            <input
-                                id="contact-name"
-                                type="text"
-                                required
-                                value={form.name}
-                                onChange={handleChange("name")}
-                                placeholder="Nama kamu"
-                                className={`w-full rounded-xl border ${palette.inputBorder} ${palette.inputBg} ${palette.inputText} ${palette.placeholder} px-4 py-3 text-sm outline-none transition-colors duration-200 ${palette.inputFocus}`}
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="contact-contact" className={`text-[11px] font-medium tracking-[0.05em] uppercase ${palette.label}`}>
-                                Kontak
-                            </label>
-                            <input
-                                id="contact-contact"
-                                type="text"
-                                required
-                                value={form.contact}
-                                onChange={handleChange("contact")}
-                                placeholder="Nomor WhatsApp atau email"
-                                className={`w-full rounded-xl border ${palette.inputBorder} ${palette.inputBg} ${palette.inputText} ${palette.placeholder} px-4 py-3 text-sm outline-none transition-colors duration-200 ${palette.inputFocus}`}
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-2">
-                            <label htmlFor="contact-message" className={`text-[11px] font-medium tracking-[0.05em] uppercase ${palette.label}`}>
-                                Kebutuhan
-                            </label>
-                            <textarea
-                                id="contact-message"
-                                required
-                                rows={3}
-                                value={form.message}
-                                onChange={handleChange("message")}
-                                placeholder="Ceritakan singkat proyekmu   website apa, kapan targetnya?"
-                                className={`w-full resize-none rounded-xl border ${palette.inputBorder} ${palette.inputBg} ${palette.inputText} ${palette.placeholder} px-4 py-3 text-sm outline-none transition-colors duration-200 ${palette.inputFocus}`}
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="group inline-flex w-fit items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 mt-1 mx-auto lg:mx-0"
-                            style={{ backgroundColor: "#25D366" }}
-                        >
-                            Kirim via WhatsApp
-                            <Send className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </button>
-                    </form>
-                </motion.div>
-
-                {/* Right   availability card */}
-                <motion.div
-                    className="hidden lg:flex lg:col-span-5 justify-end items-center"
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-                >
-                    <div className={`rounded-2xl border ${palette.cardBorder} ${palette.cardBg} p-7 md:p-8 flex flex-col gap-6 w-full max-w-[500px] transition-colors duration-500`}>
-                        <div className="flex items-center gap-2.5">
-                            <span className="relative flex h-2 w-2 shrink-0">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                            </span>
-                            <span className={`text-sm font-medium ${palette.valueText}`}>Terbuka untuk proyek baru</span>
-                        </div>
-
-                        <div className={`h-px w-full ${palette.divider}`} />
-
-                        {/* Chat preview   shows what a real reply actually looks like, instead of just claiming a response time */}
-                        <div className="flex flex-col gap-3 py-1">
-                            <motion.div
-                                className={`self-start max-w-[82%] rounded-2xl rounded-bl-md border ${palette.bubbleInBorder} ${palette.bubbleInBg} px-4 py-2.5`}
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-                            >
-                                <p className={`text-[13px] leading-snug ${palette.bubbleInText}`}>
-                                    Halo, mau tanya soal harga paket landing page 🙌
-                                </p>
-                            </motion.div>
-
-                            <motion.div
-                                className="self-start flex items-center gap-1.5 rounded-full px-3 py-2"
-                                style={{ backgroundColor: ACCENT }}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: [0, 1, 1, 0] }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 1.1, delay: 0.85, times: [0, 0.25, 0.75, 1], ease: "easeInOut" }}
-                            >
-                                {[0, 1, 2].map((i) => (
-                                    <motion.span
-                                        key={i}
-                                        className="size-1.5 rounded-full bg-white/80"
-                                        animate={{ y: [0, -3, 0] }}
-                                        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.12, ease: "easeInOut" }}
-                                    />
-                                ))}
-                            </motion.div>
-
-                            <motion.div
-                                className="self-end flex flex-col items-end gap-1.5 max-w-[82%]"
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.4, delay: 1.95, ease: "easeOut" }}
-                            >
-                                <Badge className="bg-primary text-primary-foreground border-transparent rounded-tr-md rounded-tl-md rounded-bl-md px-2 py-0.5 text-[10px] font-medium shadow-none hover:bg-primary">
-                                    Beyond Team
-                                </Badge>
-                                <div className="rounded-2xl rounded-br-md px-4 py-2.5" style={{ backgroundColor: ACCENT }}>
-                                    <p className="text-[13px] leading-snug text-white">
-                                        Halo! Boleh, aku bantu jelasin detailnya sekarang ya 👍
-                                    </p>
-                                </div>
-                                <span className={`inline-flex items-center gap-1 text-[11px] ${palette.timestamp}`}>
-                                    2 menit lalu <CheckCheck className="size-3" style={{ color: ACCENT }} />
-                                </span>
-                            </motion.div>
-                        </div>
-
-                        <div className={`h-px w-full ${palette.divider}`} />
-
-                        <div className="flex items-center justify-between gap-4">
-                            <div className="flex flex-col gap-0.5">
-                                <span className={`text-[11px] font-medium tracking-[0.05em] uppercase ${palette.monoLabel}`}>
-                                    Waktu respon
-                                </span>
-                                <span className={`text-2xl md:text-3xl font-semibold font-display leading-none ${palette.valueText}`}>
-                                    ~1 jam
-                                </span>
-                            </div>
-                            <p className={`text-xs text-right leading-snug max-w-[16ch] ${palette.sub}`}>
-                                rata-rata balasan pertama dari tim kami
-                            </p>
-                        </div>
-
-                        <div className={`h-px w-full ${palette.divider}`} />
-
-                        <div className="flex flex-col gap-3.5">
-                            <span className={`text-[11px] font-medium tracking-[0.05em] uppercase ${palette.monoLabel}`}>
-                                Tahap Selanjutnya
-                            </span>
-                            <ul className="flex flex-col gap-3">
-                                <li className="flex items-start gap-3">
-                                    <div className="mt-1.5 size-1.5 rounded-full shrink-0 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
-                                    <p className={`text-[13px] leading-relaxed ${palette.sub}`}>
-                                        <strong className={`font-medium ${palette.valueText}`}>Konsultasi Gratis.</strong> Ceritakan kebutuhanmu tanpa komitmen apa pun.
-                                    </p>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <div className="mt-1.5 size-1.5 rounded-full shrink-0 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
-                                    <p className={`text-[13px] leading-relaxed ${palette.sub}`}>
-                                        <strong className={`font-medium ${palette.valueText}`}>Estimasi Transparan.</strong> Dapatkan rincian harga & timeline dalam 24 jam.
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </motion.div>
+  return (
+    <section className="bg-white py-20 text-black antialiased [font-synthesis:none] sm:py-24 lg:py-32 dark:bg-black dark:text-white" id="contact">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid gap-6 lg:grid-cols-[0.94fr_1.06fr]">
+        <motion.div
+          className="flex min-h-[560px] items-start rounded-3xl border border-black/10 bg-white px-6 py-12 sm:px-10 dark:border-white/10 dark:bg-[#0a0a0a] lg:min-h-[640px] lg:px-14 lg:py-16"
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <div className="mx-auto w-full max-w-[520px]">
+            <div>
+              <div className="mb-6 w-fit rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
+                  Hubungi Kami
+              </div>
+              <WordsReveal
+                as="h2"
+                className="text-4xl font-semibold leading-tight tracking-tight text-black md:text-5xl dark:text-white"
+                text="Mulai Proyekmu, Tanpa Basa-basi."
+                step={0.04}
+                duration={0.6}
+              />
+              <WordsReveal
+                as="p"
+                className="mt-5 max-w-[420px] text-base leading-relaxed text-black/60 dark:text-white/60 sm:text-lg"
+                text="Isi form singkat ini, kami balas langsung lewat WhatsApp biasanya dalam hitungan menit, bukan hari."
+                step={0.02}
+                delay={0.3}
+                duration={0.5}
+              />
             </div>
-        </section>
-    );
+
+            <form onSubmit={handleSubmit} className="mt-12 space-y-6">
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="contact-name" className="text-[10px] font-bold tracking-widest uppercase text-black/50 dark:text-white/50">
+                    Nama
+                </label>
+                <input
+                    id="contact-name"
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={handleChange("name")}
+                    placeholder="Nama kamu"
+                    className="w-full rounded-xl border border-black/10 bg-transparent px-4 py-3.5 text-sm text-black placeholder:text-black/30 outline-none transition-colors focus:bg-black/5 focus:border-black/30 dark:border-white/10 dark:text-white dark:placeholder:text-white/30 dark:focus:bg-white/5 dark:focus:border-white/30"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="contact-contact" className="text-[10px] font-bold tracking-widest uppercase text-black/50 dark:text-white/50">
+                    Kontak
+                </label>
+                <input
+                    id="contact-contact"
+                    type="text"
+                    required
+                    value={form.contact}
+                    onChange={handleChange("contact")}
+                    placeholder="Nomor WhatsApp atau email"
+                    className="w-full rounded-xl border border-black/10 bg-transparent px-4 py-3.5 text-sm text-black placeholder:text-black/30 outline-none transition-colors focus:bg-black/5 focus:border-black/30 dark:border-white/10 dark:text-white dark:placeholder:text-white/30 dark:focus:bg-white/5 dark:focus:border-white/30"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2.5">
+                <label htmlFor="contact-message" className="text-[10px] font-bold tracking-widest uppercase text-black/50 dark:text-white/50">
+                    Kebutuhan
+                </label>
+                <textarea
+                    id="contact-message"
+                    required
+                    rows={4}
+                    value={form.message}
+                    onChange={handleChange("message")}
+                    placeholder="Ceritakan singkat proyekmu, website apa, kapan targetnya?"
+                    className="w-full min-h-[120px] resize-none rounded-xl border border-black/10 bg-transparent p-4 text-sm text-black placeholder:text-black/30 outline-none transition-colors focus:bg-black/5 focus:border-black/30 dark:border-white/10 dark:text-white dark:placeholder:text-white/30 dark:focus:bg-white/5 dark:focus:border-white/30"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-4 text-[15px] font-semibold text-primary-foreground transition duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-primary-hover active:scale-[0.97]"
+              >
+                Kirim via WhatsApp
+                <MessageCircle className="size-4" />
+              </button>
+            </form>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="relative flex min-h-[420px] overflow-hidden rounded-3xl bg-black p-8 text-white sm:p-12 lg:min-h-[640px]"
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+        >
+          <GrainGradient
+            speed={1}
+            scale={1}
+            rotation={0}
+            offsetX={0}
+            offsetY={0}
+            softness={0.5}
+            intensity={0.5}
+            noise={0.25}
+            shape="corners"
+            frame={2854.5}
+            colors={["#FFFFFF", "#3B82F6", "#3B82F6", "#FFFFFF"]}
+            colorBack="#00000000"
+            className="absolute inset-0 bg-black"
+          />
+
+          <div className="relative z-10 flex h-full w-full flex-col justify-between">
+            <WordsReveal
+              as="h2"
+              className="max-w-[620px] pt-0 text-5xl font-medium tracking-[-0.05em] text-white sm:text-6xl lg:pt-16 lg:text-[64px] lg:leading-[0.98] xl:text-[70px]"
+              text="Think fast, Build faster"
+              step={0.05}
+              duration={0.55}
+            />
+          </div>
+        </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default ContactSection;

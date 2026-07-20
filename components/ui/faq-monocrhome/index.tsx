@@ -246,12 +246,12 @@ export function FAQ1({
         width: 0.55rem;
         height: 0.55rem;
         border-radius: 9999px;
-        background: currentColor;
-        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+        background: var(--primary);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
         animation: faq1-tick 3.2s ease-in-out infinite;
       }
       .faq1-intro--light .faq1-intro__tick {
-        box-shadow: 0 0 0 4px rgba(15, 15, 15, 0.08);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
       }
       .faq1-fade {
         opacity: 0;
@@ -349,7 +349,7 @@ export function FAQ1({
       )}
 
       <section
-        className={`relative z-10 mx-auto flex max-w-4xl flex-col gap-12 px-6 lg:max-w-5xl lg:px-12 ${
+        className={`relative z-10 mx-auto flex max-w-7xl flex-col gap-12 px-6 lg:px-12 ${
           seamlessTop ? "pb-24 pt-16 lg:pt-20" : "py-24"
         } ${
           hasEntered ? "faq1-fade--ready" : "faq1-fade"
