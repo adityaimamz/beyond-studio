@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { bsTestimoniList, bsTestimoniHeader, Testimoni } from '@/constants/landing';
 import { useTheme } from '@/components/providers/ThemeProvider';
+import { useInView } from '@/hooks/use-in-view';
 
 const firstColumn = bsTestimoniList.slice(0, 3);
 const secondColumn = bsTestimoniList.slice(3, 6);
@@ -14,19 +15,19 @@ const TestimonialsColumn = (props: {
   testimonials: Testimoni[];
   duration?: number;
 }) => {
+  // Marquee jalan lewat CSS animation (bukan motion/RAF) supaya bisa di-pause
+  // murah lewat `animation-play-state` begitu kolom keluar viewport - mencegah
+  // 3 kolom x ~6 kartu ini terus-menerus repaint/composite saat user scroll.
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0, once: false });
+
   return (
-    <div className={props.className}>
-      <motion.ul
-        animate={{
-          translateY: "-50%",
+    <div ref={ref} className={props.className}>
+      <ul
+        style={{
+          animationDuration: `${props.duration || 10}s`,
+          animationPlayState: inView ? "running" : "paused",
         }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
+        className="marquee-column flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
       >
         {[
           ...new Array(2).fill(0).map((_, index) => (
@@ -48,7 +49,7 @@ const TestimonialsColumn = (props: {
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
                     transition: { type: "spring", stiffness: 400, damping: 17 }
                   }}
-                  className="p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-neutral-900 transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30" 
+                  className="p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-neutral-900 transition-[transform,background-color,border-color,box-shadow,ring-color] duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30" 
                 >
                   <blockquote className="m-0 p-0">
                     <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal m-0 transition-colors duration-300">
@@ -60,7 +61,7 @@ const TestimonialsColumn = (props: {
                         height={40}
                         src={image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150"}
                         alt={`Avatar of ${name}`}
-                        className="h-10 w-10 rounded-full object-cover ring-2 ring-neutral-100 dark:ring-neutral-800 group-hover:ring-primary/30 transition-all duration-300 ease-in-out"
+                        className="h-10 w-10 rounded-full object-cover ring-2 ring-neutral-100 dark:ring-neutral-800 group-hover:ring-primary/30 transition-shadow duration-300 ease-in-out"
                       />
                       <div className="flex flex-col min-w-0">
                         <cite className="font-semibold not-italic tracking-tight leading-5 text-neutral-900 dark:text-white transition-colors duration-300 truncate max-w-[150px]">
@@ -77,7 +78,7 @@ const TestimonialsColumn = (props: {
             </React.Fragment>
           )),
         ]}
-      </motion.ul>
+      </ul>
     </div>
   );
 };

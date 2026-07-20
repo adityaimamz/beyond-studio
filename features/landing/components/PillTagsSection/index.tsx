@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { Badge } from "@/components/ui/badge";
+import { useReducedMotion } from "framer-motion";
 
 const STEPS = [
   {
@@ -91,11 +92,13 @@ function Row({
   const isLast = index === STEPS.length - 1;
   const accentColor = isDark ? "#FFFFFF" : "#131113";
 
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       className="relative flex gap-5 md:gap-7"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? undefined : { opacity: 0, y: 18 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
     >
@@ -130,7 +133,7 @@ function Row({
 
       {/* Content card */}
       <div
-        className={`group flex-1 min-w-0 mb-4 md:mb-5 rounded-2xl px-5 py-5 md:px-6 md:py-6 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-300 hover:-translate-y-0.5 ${step.text}`}
+        className={`group flex-1 min-w-0 mb-4 md:mb-5 rounded-2xl px-5 py-5 md:px-6 md:py-6 flex flex-col sm:flex-row sm:items-center gap-4 transition-[transform,background-color] duration-300 hover:-translate-y-0.5 ${step.text}`}
         style={{ backgroundColor: step.bg }}
       >
         <div
@@ -172,13 +175,15 @@ export function PillTagsSection() {
   });
   const railScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className={`${sectionBg} pb-24 md:pb-32 transition-colors duration-500`}>
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 flex flex-col md:items-center md:text-center">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl flex flex-col md:items-center gap-5"

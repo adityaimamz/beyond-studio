@@ -339,11 +339,8 @@ export function FAQ1({
         <div className={backdropPosition}>
           <div className="absolute inset-0" style={{ background: auroraBackground }} />
           <div
-            className="absolute inset-0 opacity-80"
-            style={{
-              background: palette.overlay,
-              mixBlendMode: theme === "dark" ? "screen" : "multiply",
-            }}
+            className="absolute inset-0 opacity-60"
+            style={{ background: palette.overlay }}
           />
         </div>
       )}
@@ -386,7 +383,7 @@ export function FAQ1({
             return (
               <li
                 key={item.question}
-                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow}`}
+                className={`group relative overflow-hidden rounded-3xl border backdrop-blur-md transition-[transform,background-color,border-color,box-shadow] duration-300 hover:-translate-y-0.5 focus-within:-translate-y-0.5 ${palette.border} ${palette.panel} ${palette.shadow}`}
                 onMouseMove={setCardGlow}
                 onMouseLeave={clearCardGlow}
               >
@@ -461,11 +458,13 @@ export function FAQ1({
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
-                      className={`overflow-hidden text-sm leading-relaxed transition-[max-height] duration-500 ease-out ${
-                        open ? "max-h-64" : "max-h-0"
+                      className={`grid transition-[grid-template-rows] duration-250 ease-out ${
+                        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                       } ${palette.muted}`}
                     >
-                      <p className="pr-2">{item.answer}</p>
+                      <div className="overflow-hidden">
+                        <p className="pr-2 text-sm leading-relaxed pb-4">{item.answer}</p>
+                      </div>
                     </div>
                   </div>
                 </button>

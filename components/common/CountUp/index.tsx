@@ -72,17 +72,25 @@ export interface CountNumberProps {
   to: number;
   duration?: number;
   start: boolean;
+  delay?: number;
+  format?: (n: number) => string;
 }
 
-export function CountNumber({ to, duration = 1.5, start }: CountNumberProps) {
+export function CountNumber({ to, duration = 1.5, start, delay = 0, format }: CountNumberProps) {
   const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => Math.round(v).toString());
+  const rounded = useTransform(mv, (v) => {
+    const val = Math.round(v);
+    return format ? format(val) : val.toString();
+  });
 
   useEffect(() => {
     if (!start) return;
-    const controls = animate(mv, to, { duration, ease: "easeOut" });
-    return () => controls.stop();
-  }, [start, to, duration, mv]);
+    const timeoutDuration = delay > 10 ? delay : delay * 1000;
+    const t = setTimeout(() => {
+      animate(mv, to, { duration, ease: "easeOut" });
+    }, timeoutDuration);
+    return () => clearTimeout(t);
+  }, [start, to, duration, mv, delay]);
 
   return <motion.span>{rounded}</motion.span>;
 }

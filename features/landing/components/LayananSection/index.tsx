@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { layananMockups } from "@/constants/assets";
 import { WordsReveal } from "@/components/common";
 import { bsLayananHeader, bsLayananCards, type LayananCard } from "@/constants/landing";
@@ -75,11 +75,13 @@ const CARD_DELAYS: Record<string, number> = {
 };
 
 function SectionHeader() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="flex flex-col md:flex-row items-start justify-between mb-12 md:mb-16 gap-8">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex flex-col gap-6 w-full md:max-w-[690px]"
@@ -97,8 +99,8 @@ function SectionHeader() {
         </div>
       </motion.div>
       <motion.p
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
         className="hidden md:block text-xl text-neutral-500 text-right shrink-0"
@@ -110,6 +112,7 @@ function SectionHeader() {
 }
 
 function LayananCardComponent({ card }: { card: LayananCard }) {
+  const shouldReduceMotion = useReducedMotion();
   const meta = CARD_META[card.id];
   if (!meta) return null;
 
@@ -118,8 +121,8 @@ function LayananCardComponent({ card }: { card: LayananCard }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? undefined : { opacity: 0, y: 50 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay, ease: "easeOut" }}
       className="relative h-full min-h-[380px] md:min-h-0 md:h-full rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 flex flex-col text-left"
@@ -156,8 +159,8 @@ function LayananCardComponent({ card }: { card: LayananCard }) {
 
       <motion.div
         className={`relative mx-4 md:mx-5 mb-4 md:mb-5 mt-auto ${meta.imageHeight} rounded-xl overflow-hidden border border-white/10 bg-black shrink-0`}
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.25 }}
       >

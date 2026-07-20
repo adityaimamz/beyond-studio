@@ -1,7 +1,7 @@
 "use client";
 
 import type * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   bgAsset,
   macDotUrl,
@@ -26,8 +26,8 @@ import {
   StaggeredWords,
   TypingPlaceholderInput,
   WordsReveal,
-  CountUpInView,
 } from "@/components/common";
+import { CountNumber } from "@/components/common/CountUp";
 
 import { useTheme } from "@/components/providers/ThemeProvider";
 
@@ -42,6 +42,7 @@ function ToolIcon({ src, className, style }: { src: string; className?: string; 
 export function HeroSection() {
   const heroReady = useHeroReady(2100);
   const { theme } = useTheme();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="relative">
@@ -95,14 +96,14 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center transition-colors w-full sm:w-auto cursor-pointer anim-reveal-right"
-                style={{ animationDelay: "1620ms", clipPath: "inset(0 100% 0 0)" }}
+                style={{ animationDelay: "400ms", clipPath: "inset(0 100% 0 0)" }}
               >
                 Konsultasi via WhatsApp
               </a>
               <a
                 href="#paket-harga"
                 className="bg-white/5 hover:bg-white/10 outline outline-[1.30px] outline-white/10 text-neutral-100 text-sm sm:text-[15px] font-medium rounded-xl h-12 px-6 flex items-center justify-center transition-colors w-full sm:w-auto cursor-pointer anim-reveal-right"
-                style={{ animationDelay: "1770ms", clipPath: "inset(0 100% 0 0)" }}
+                style={{ animationDelay: "550ms", clipPath: "inset(0 100% 0 0)" }}
               >
                 Lihat Paket Harga
               </a>
@@ -115,8 +116,8 @@ export function HeroSection() {
               <aside className="w-56 shrink-0 h-full relative bg-black">
                 <motion.div
                   className="flex items-center gap-5 px-4 py-5"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.06, ease: "easeOut" }}
                 >
                   <span className="text-sm font-medium text-neutral-100">Layers</span>
@@ -147,8 +148,8 @@ export function HeroSection() {
                   ].map((node, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                      initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                      animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                       transition={{ duration: 0.72, delay: 0.12 + i * 0.2, ease: "easeOut" }}
                     >
                       {node}
@@ -162,8 +163,8 @@ export function HeroSection() {
                 {/* Card 1 - Beige */}
                 <motion.div
                   className="w-96 h-60 relative bg-[#D0C9B9] rounded-2xl overflow-hidden p-5 flex flex-col text-[#131113]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.18, ease: "easeOut" }}
                 >
                   <div className="flex justify-between relative z-10">
@@ -174,7 +175,7 @@ export function HeroSection() {
                     <div className="flex flex-col items-end">
                       <WordsReveal as="span" className="text-xs opacity-40 block" text="Status" delay={0.66} step={0.048} duration={0.3} active={heroReady} />
                       <span className="text-2xl font-medium mt-1">
-                        <CountUpInView end={93} duration={1200} delay={780} active={heroReady} />%
+                        <CountNumber to={93} duration={1.2} delay={780} start={heroReady} />%
                       </span>
                     </div>
                   </div>
@@ -184,8 +185,8 @@ export function HeroSection() {
                   </div>
                   <motion.div
                     className="absolute inset-0 z-0 pointer-events-none"
-                    initial={{ clipPath: "inset(0 100% 0 0)" }}
-                    animate={heroReady ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
+                    initial={shouldReduceMotion ? undefined : { clipPath: "inset(0 100% 0 0)" }}
+                    animate={heroReady && !shouldReduceMotion ? { clipPath: "inset(0 0% 0 0)" } : (shouldReduceMotion ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" })}
                     transition={{ duration: 0.72, delay: 0.48, ease: "easeInOut" }}
                   >
                     <img src={dashLine.url} alt="" className="absolute inset-0 w-full h-full object-cover scale-[1.015] origin-center pointer-events-none" />
@@ -195,19 +196,19 @@ export function HeroSection() {
                 {/* Card 2 - Pink */}
                 <motion.div
                   className="w-36 h-60 relative rounded-2xl overflow-hidden flex flex-col justify-center items-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.24, ease: "easeOut" }}
                 >
                   <img src={dashCard3Pink.url} alt="" className="absolute inset-0 w-full h-full object-cover z-0" />
                   <div className="relative z-10 flex flex-col items-center">
                     <span className="text-3xl font-medium text-neutral-900">
-                      <CountUpInView end={8000} duration={1200} delay={360} active={heroReady} />
+                      <CountNumber to={8000} duration={1.2} delay={360} start={heroReady} />
                     </span>
                     <motion.span
                       className="text-sm text-neutral-900/60 mt-1"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                      initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
+                      animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 })}
                       transition={{ duration: 0.3, delay: 0.42, ease: "easeOut" }}
                     >
                       Components
@@ -218,8 +219,8 @@ export function HeroSection() {
                 {/* Card 3 - Custom AI */}
                 <motion.div
                   className="w-72 h-60 rounded-2xl overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.3, ease: "easeOut" }}
                 >
                   <img src={dashCard3.url} alt="" className="w-full h-full object-cover" />
@@ -228,8 +229,8 @@ export function HeroSection() {
                 {/* Card 4 - Its Magic */}
                 <motion.div
                   className="w-96 h-60 rounded-2xl overflow-hidden -mt-[56px]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.36, ease: "easeOut" }}
                 >
                   <img src={dashCard4.url} alt="" className="w-full h-full object-cover object-left" />
@@ -238,8 +239,8 @@ export function HeroSection() {
                 {/* Card 5 - AI Created */}
                 <motion.div
                   className="w-[448px] h-60 rounded-2xl overflow-hidden -mt-[56px]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  animate={heroReady && !shouldReduceMotion ? { opacity: 1, y: 0 } : (shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                   transition={{ duration: 0.36, delay: 0.42, ease: "easeOut" }}
                 >
                   <img src={dashCard5.url} alt="" className="w-full h-full object-cover" />

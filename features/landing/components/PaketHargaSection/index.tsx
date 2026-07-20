@@ -1,7 +1,7 @@
 "use client";
 
 import type * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { checkMarkUrl } from "@/constants/assets";
 import { bsPaketHargaList, bsPaketHargaHeader, type PaketHarga } from "@/constants/landing";
 import { WordsReveal } from "@/components/common";
@@ -21,11 +21,10 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
 
   return (
     <motion.div
-      className={`relative overflow-hidden flex flex-col justify-between bg-white/40 backdrop-blur-sm p-8 rounded-2xl h-full transition-all duration-300 hover:scale-[1.01] hover:shadow-md ${
-        plan.featured
+      className={`relative overflow-hidden flex flex-col justify-between bg-white/40 backdrop-blur-sm p-8 rounded-2xl h-full transition-[transform,box-shadow,border-color,background-color] duration-300 hover:scale-[1.01] hover:shadow-md ${plan.featured
           ? "border-2 border-stone-950/20 bg-white/60"
           : "border border-stone-950/5"
-      }`}
+        }`}
       variants={item}
       transition={{ duration: 0.55, ease: "easeOut" }}
     >
@@ -45,7 +44,7 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
       <div>
         {/* Title */}
         <h3 className="text-xl font-bold text-stone-900 mb-2 mt-2">{plan.title}</h3>
-        
+
         {/* Price Row */}
         <div className="flex items-baseline gap-1 mt-3">
           <span className="text-3xl font-extrabold text-stone-950">{plan.price}</span>
@@ -75,12 +74,11 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
       {/* CTA Button */}
       <div className="mt-8">
         <a
-          href="#kontak"
-          className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center block transition-[background-color,transform,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.97] cursor-pointer text-sm shadow-xs ${
-            isSkripsi
+          href="#contact"
+          className={`w-full py-3.5 px-4 rounded-xl font-semibold text-center block transition-[background-color,transform,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-out)] active:scale-[0.97] cursor-pointer text-sm shadow-xs ${isSkripsi
               ? "bg-transparent text-stone-950 border border-stone-950 hover:bg-stone-950/10"
               : "bg-stone-950 text-white hover:bg-stone-800 hover:shadow-md"
-          }`}
+            }`}
         >
           {plan.ctaLabel}
         </a>
@@ -91,6 +89,8 @@ function PaketHargaCard({ plan }: PaketHargaCardProps) {
 
 export function PaketHargaSection() {
   const { theme } = useTheme();
+  const shouldReduceMotion = useReducedMotion();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -126,8 +126,8 @@ export function PaketHargaSection() {
         {/* Grid layout */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={containerVariants}
-          initial="hidden"
+          variants={shouldReduceMotion ? {} : containerVariants}
+          initial={shouldReduceMotion ? "visible" : "hidden"}
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >

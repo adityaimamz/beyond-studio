@@ -6,11 +6,16 @@ import { MessageCircle, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { WordsReveal } from "@/components/common";
 import { bsKontakContent } from "@/constants/landing";
+import { useInView } from "@/hooks/use-in-view";
 
 export function ContactSection() {
   const [form, setForm] = useState({ name: "", category: "", message: "" });
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { ref: gradientPanelRef, inView: gradientPanelInView } = useInView<HTMLDivElement>({
+    threshold: 0,
+    once: false,
+  });
 
   function handleChange(field: keyof typeof form) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -146,6 +151,7 @@ export function ContactSection() {
         </motion.div>
 
         <motion.div
+          ref={gradientPanelRef}
           className="relative flex min-h-[420px] overflow-hidden rounded-3xl bg-black p-8 text-white sm:p-12 lg:min-h-[640px]"
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -153,7 +159,7 @@ export function ContactSection() {
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
         >
           <GrainGradient
-            speed={1}
+            speed={gradientPanelInView ? 1 : 0}
             scale={1}
             rotation={0}
             offsetX={0}

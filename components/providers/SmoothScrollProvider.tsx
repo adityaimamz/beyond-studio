@@ -2,6 +2,7 @@
 
 import { useEffect, useState, createContext, useContext, ReactNode } from 'react';
 import Lenis from 'lenis';
+import { useAnimationFrame } from 'framer-motion';
 
 // Membuat Context untuk membagikan instance Lenis
 const SmoothScrollContext = createContext<Lenis | null>(null);
@@ -13,8 +14,11 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = 'manual';
+    }
     const lenis = new Lenis({
-      autoRaf: true,
+      autoRaf: false,
       anchors: true, // Otomatis meng-handle smooth scroll untuk href="#id"
     });
 
@@ -24,6 +28,12 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenis.destroy();
     };
   }, []);
+
+  useAnimationFrame(() => {
+    if (lenisInstance) {
+      lenisInstance.raf(performance.now());
+    }
+  });
 
   return (
     <SmoothScrollContext.Provider value={lenisInstance}>

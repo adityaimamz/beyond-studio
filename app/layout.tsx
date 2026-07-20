@@ -7,8 +7,17 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://beyond-studio-lac.vercel.app'),
   title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
   description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
+  openGraph: {
+    title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
+    description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
+    url: '/',
+    siteName: 'Beyond Studio',
+    locale: 'id_ID',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

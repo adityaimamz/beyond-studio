@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { macDotUrl, whiteCursorUrl, copyUrl, plusUrl, bgAsset } from "@/constants/assets";
 import { WordsReveal, Typewriter } from "@/components/common";
 import { Button, Badge } from "@/components/ui";
@@ -49,6 +49,7 @@ export function CraftsmanshipSection() {
   const [copied, setCopied] = React.useState(false);
   const { theme } = useTheme();
   const palette = palettes[theme === "light" ? "light" : "dark"];
+  const shouldReduceMotion = useReducedMotion();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(bsCraftsmanshipContent.codeSnippet.join("\n"));
@@ -78,8 +79,8 @@ export function CraftsmanshipSection() {
           />
           <motion.div
             className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
@@ -104,8 +105,8 @@ export function CraftsmanshipSection() {
         <motion.div
           className={`rounded-3xl border ${palette.macBorder} overflow-hidden flex flex-col w-full transition-colors duration-500`}
           style={{ backgroundColor: palette.macBg }}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
@@ -116,7 +117,7 @@ export function CraftsmanshipSection() {
             </div>
             <motion.div
               className="flex gap-1.5 sm:gap-3"
-              initial="hidden"
+              initial={shouldReduceMotion ? "visible" : "hidden"}
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
               transition={{ staggerChildren: 0.15, delayChildren: 0.5 }}
@@ -124,7 +125,7 @@ export function CraftsmanshipSection() {
               {[whiteCursorUrl, copyUrl, plusUrl].map((src, i) => (
                 <motion.div
                   key={i}
-                  variants={{
+                  variants={shouldReduceMotion ? {} : {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 },
                   }}
@@ -135,8 +136,8 @@ export function CraftsmanshipSection() {
               ))}
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
             >
@@ -158,8 +159,8 @@ export function CraftsmanshipSection() {
                 <motion.button
                   onClick={handleCopy}
                   className="size-10 bg-zinc-800 rounded-lg flex items-center justify-center shrink-0 cursor-pointer text-white/70 hover:text-white transition-colors"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
                   title="Copy code"

@@ -19,6 +19,18 @@
 .anim-reveal-right { clip-path: inset(0 100% 0 0); animation: reveal-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .word-stagger > span { display: inline-block; opacity: 0; animation: rise-up 0.9s ease-out forwards; }
 
+/* Testimonial marquee columns - CSS-driven (not JS/RAF) so it can be paused
+   cheaply via `animation-play-state` when the column scrolls off-screen. */
+@keyframes marquee-scroll-y {
+  to { transform: translateY(-50%); }
+}
+.marquee-column {
+  animation-name: marquee-scroll-y;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
 /* Respect user's motion preferences - disable all animations */
 @media (prefers-reduced-motion: reduce) {
   *,

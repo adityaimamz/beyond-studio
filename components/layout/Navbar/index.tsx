@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { bsNavItems, bsNavCTA } from "@/constants/landing";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -10,6 +10,7 @@ import { Sun, Moon } from "lucide-react";
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <>
@@ -101,9 +102,9 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, x: "100%" }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[100] bg-background md:hidden flex flex-col p-6"
           >
@@ -138,8 +139,8 @@ export function Navbar() {
             <nav className="flex flex-col gap-6 mt-12">
               {bsNavItems.map((item, i) => (
                 <motion.a
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: 20 }}
+                  animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}
                   key={item.label}
                   href={item.href}
@@ -151,8 +152,8 @@ export function Navbar() {
               ))}
             </nav>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+              animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="mt-auto flex flex-col gap-4"
             >

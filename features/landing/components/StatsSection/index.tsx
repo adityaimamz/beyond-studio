@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView as useInViewFM } from "framer-motion";
+import { motion, useInView as useInViewFM, useReducedMotion } from "framer-motion";
 import { blueArrowUrl } from "@/constants/assets";
 import { CountNumber } from "@/components/common/CountUp";
 import { useTheme } from "@/components/providers/ThemeProvider";
@@ -55,6 +55,7 @@ export function StatsSection() {
   const { theme } = useTheme();
   const isLight = theme === "light";
   const palette = palettes[isLight ? "light" : "dark"];
+  const shouldReduceMotion = useReducedMotion();
 
   // Cursor choreography keyframes (delays start after card appears ~0.6s)
   const cursorKeyframes = {
@@ -76,8 +77,8 @@ export function StatsSection() {
       <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-6 lg:items-end">
         <motion.div
           className="lg:col-span-7 flex flex-col gap-5 md:items-start"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -91,8 +92,8 @@ export function StatsSection() {
 
         <motion.p
           className={`lg:col-span-5 text-lg md:text-xl leading-relaxed lg:pb-1 ${theme === "light" ? "text-neutral-600" : "text-neutral-400"}`}
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
@@ -107,8 +108,8 @@ export function StatsSection() {
             <motion.div
               key={m.label}
               className={`flex items-start justify-between gap-6 py-7 border-b ${palette.specBorder}`}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.1 }}
             >
@@ -125,10 +126,11 @@ export function StatsSection() {
                 </span>
                 <div className={`mt-3 h-[2px] w-16 rounded-full ${isLight ? "bg-neutral-200" : "bg-white/10"} overflow-hidden`}>
                   <motion.div
-                    className={`h-full rounded-full ${palette.accentBar}`}
-                    initial={{ width: "0%" }}
-                    animate={inView ? { width: `${m.value}%` } : { width: "0%" }}
+                    className={`h-full rounded-full ${palette.accentBar} origin-left`}
+                    initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
+                    animate={inView ? { scaleX: m.value / 100 } : { scaleX: 0 }}
                     transition={{ duration: 0.9, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transformOrigin: "left" }}
                   />
                 </div>
               </div>
@@ -140,8 +142,8 @@ export function StatsSection() {
           {/* Multiplayer card */}
           <motion.div
             className={`relative ${palette.cardBg} rounded-[2rem] p-8 sm:p-12 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           >
@@ -152,9 +154,9 @@ export function StatsSection() {
                 <motion.span
                   aria-hidden
                   className={`absolute inset-0 ${palette.sweepBar} rounded-md origin-left`}
-                  initial={{ scaleX: 0 }}
+                  initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
                   animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
-                  transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
+                  transition={{ duration: 0.91, delay: 1.55, ease: [0.23, 1, 0.32, 1] }}
                   style={{ transformOrigin: "left center" }}
                 />
                 {/* base text */}
@@ -163,9 +165,9 @@ export function StatsSection() {
                 <motion.span
                   aria-hidden
                   className={`absolute inset-0 px-2 py-1 font-semibold whitespace-nowrap ${palette.overlayText}`}
-                  initial={{ clipPath: "inset(0 100% 0 0)" }}
+                  initial={shouldReduceMotion ? undefined : { clipPath: "inset(0 100% 0 0)" }}
                   animate={inView ? { clipPath: "inset(0 0% 0 0)" } : { clipPath: "inset(0 100% 0 0)" }}
-                  transition={{ duration: 0.91, delay: 1.55, ease: "linear" }}
+                  transition={{ duration: 0.91, delay: 1.55, ease: [0.23, 1, 0.32, 1] }}
                 >
                   hari ini
                 </motion.span>
@@ -174,10 +176,10 @@ export function StatsSection() {
             </p>
             {/* Animated cursor */}
             <motion.div
-              className="absolute pointer-events-none"
+              className="absolute pointer-events-none hidden sm:block"
               style={{ top: "40%", left: "55%" }}
-              initial={{ opacity: 0, x: 100, y: 100 }}
-              animate={inView ? cursorKeyframes : { opacity: 0, x: 100, y: 100 }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, x: 100, y: 100 }}
+              animate={inView && !shouldReduceMotion ? cursorKeyframes : (shouldReduceMotion ? { opacity: 1, x: 115, y: 40 } : { opacity: 0, x: 100, y: 100 })}
               transition={cursorTransition}
             >
               <img src={blueArrowUrl} alt="" width={28} height={28} />
