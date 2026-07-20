@@ -4,6 +4,7 @@ import 'lenis/dist/lenis.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { SmoothScrollProvider } from '@/components/providers/SmoothScrollProvider';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
@@ -23,6 +24,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <SmoothScrollProvider>
             <ScrollIndicator />
             {children}
+            <Analytics />
           </SmoothScrollProvider>
         </ThemeProvider>
       </body>
