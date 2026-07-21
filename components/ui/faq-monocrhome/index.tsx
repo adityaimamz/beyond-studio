@@ -364,8 +364,8 @@ export function FAQ1({
           <span className="faq1-intro__tick" aria-hidden="true" />
         </div>
 
-        <header className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-4 max-w-2xl">
+        <header className="flex flex-col items-center text-center gap-8">
+          <div className="space-y-4 max-w-2xl flex flex-col items-center">
             <p className={`text-xs uppercase tracking-[0.35em] ${palette.muted}`}>{eyebrow}</p>
             <h2 className={`text-4xl font-semibold leading-tight md:text-5xl ${palette.heading}`}>
               {title}

@@ -180,13 +180,13 @@ export function PillTagsSection() {
   return (
     <section className={`${sectionBg} pb-24 md:pb-32 transition-colors duration-500`}>
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 flex flex-col md:items-center md:text-center">
+      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 flex flex-col items-center text-center">
         <motion.div
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl flex flex-col md:items-center gap-5"
+          className="max-w-3xl flex flex-col items-center gap-5"
         >
           <Badge className="tracking-[0.08em] uppercase">
             Alur Kerja Kami

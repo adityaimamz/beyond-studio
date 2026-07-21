@@ -77,10 +77,10 @@ export function StatsSection() {
 
   return (
     <section ref={ref} className={`${palette.sectionBg} py-24 md:py-32 transition-colors duration-500`}>
-      {/* Section Header   asymmetric masthead, deliberately not the centered pattern used in the workflow section */}
-      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-x-12 gap-y-6 lg:items-end">
+      {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-5 mb-16 md:mb-20 flex flex-col items-center text-center">
         <motion.div
-          className="lg:col-span-7 flex flex-col gap-5 md:items-start"
+          className="flex flex-col items-center gap-5 max-w-3xl"
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -95,7 +95,7 @@ export function StatsSection() {
         </motion.div>
 
         <motion.p
-          className={`lg:col-span-5 text-lg md:text-xl leading-relaxed lg:pb-1 ${theme === "light" ? "text-neutral-600" : "text-neutral-400"}`}
+          className={`max-w-3xl text-lg md:text-xl leading-relaxed mt-6 ${theme === "light" ? "text-neutral-600" : "text-neutral-400"}`}
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
