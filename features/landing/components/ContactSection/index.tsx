@@ -46,20 +46,20 @@ export function ContactSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="mx-auto w-full max-w-[520px]">
-              <div>
+              <div className="flex flex-col items-center text-center">
                 <div className="mb-6 w-fit rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-black/70 dark:border-white/10 dark:bg-white/5 dark:text-white/70">
                   Hubungi Kami
                 </div>
                 <WordsReveal
                   as="h2"
-                  className="text-4xl font-semibold leading-tight tracking-tight text-black md:text-5xl dark:text-white"
+                  className="text-4xl font-semibold leading-tight tracking-tight text-black md:text-5xl dark:text-white text-center"
                   text="Mulai Proyekmu, Tanpa Basa-basi."
                   step={0.04}
                   duration={0.6}
                 />
                 <WordsReveal
                   as="p"
-                  className="mt-5 max-w-[420px] text-base leading-relaxed text-black/60 dark:text-white/60 sm:text-lg"
+                  className="mt-5 max-w-[420px] text-base leading-relaxed text-black/60 dark:text-white/60 sm:text-lg text-center"
                   text="Isi form singkat ini, kami balas langsung lewat WhatsApp biasanya dalam hitungan menit, bukan hari."
                   step={0.02}
                   delay={0.3}

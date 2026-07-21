@@ -282,7 +282,7 @@ export const bsFaqList: FAQItem[] = [
 ];
 
 export const bsKontakContent = {
-  formCategories: ["Landing Page", "Company Profile", "Sistem Informasi", "Ecommerce", "Portofolio", "Skripsi", "Other"],
+  formCategories: ["Business Website", "E-Commerce", "Web Application", "Portfolio Website", "Academic Project", "Custom Solution"],
   whatsappNumberPlaceholder: "6281927070239",
   social: { instagram: "PLACEHOLDER_IG_URL", tiktok: "PLACEHOLDER_TIKTOK_URL" },
   footerCopyright: "Beyond Studio   2026",
