@@ -1,6 +1,5 @@
 "use client";
 
-import { GrainGradient } from "@paper-design/shaders-react";
 import { useState } from "react";
 import { MessageCircle, ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -39,7 +38,7 @@ export function ContactSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid gap-6 lg:grid-cols-[0.94fr_1.06fr]">
           <motion.div
-            className="flex min-h-[560px] items-start rounded-3xl border border-black/10 bg-white px-6 py-12 sm:px-10 dark:border-white/10 dark:bg-[#0a0a0a] lg:min-h-[640px] lg:px-14 lg:py-16"
+            className="flex min-h-[560px] items-start rounded-3xl border border-black/10 bg-white px-6 py-12 sm:px-10 dark:border-white/10 dark:bg-[#0a0a0a] lg:min-h-[640px] lg:px-14 lg:py-16 [transform:translateZ(0)] [will-change:transform]"
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -152,27 +151,15 @@ export function ContactSection() {
 
           <motion.div
             ref={gradientPanelRef}
-            className="relative flex min-h-[420px] overflow-hidden rounded-3xl bg-black p-8 text-white sm:p-12 lg:min-h-[640px]"
+            className="relative flex min-h-[420px] overflow-hidden rounded-3xl bg-black p-8 text-white sm:p-12 lg:min-h-[640px] [transform:translateZ(0)] [will-change:transform]"
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           >
-            <GrainGradient
-              speed={gradientPanelInView ? 1 : 0}
-              scale={1}
-              rotation={0}
-              offsetX={0}
-              offsetY={0}
-              softness={0.5}
-              intensity={0.5}
-              noise={0.25}
-              shape="corners"
-              frame={2854.5}
-              colors={["#FFFFFF", "#3B82F6", "#3B82F6", "#FFFFFF"]}
-              colorBack="#00000000"
-              className="absolute inset-0 bg-black"
-            />
+            <div className="pointer-events-none absolute inset-0 bg-black overflow-hidden [transform:translateZ(0)]">
+              <div className="absolute -inset-[50%] opacity-40 bg-[radial-gradient(circle_at_20%_20%,#3B82F6_0%,transparent_50%),radial-gradient(circle_at_80%_80%,#FFFFFF_0%,transparent_40%),radial-gradient(circle_at_50%_100%,#1E40AF_0%,transparent_60%)] transition-opacity duration-1000 [transform:translateZ(0)] [will-change:transform]" />
+            </div>
 
             <div className="relative z-10 flex h-full w-full flex-col justify-between">
               <WordsReveal

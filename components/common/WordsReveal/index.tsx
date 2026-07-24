@@ -39,7 +39,7 @@ export function WordsReveal({
       {words.map((w, i) => (
         <motion.span
           key={i}
-          style={{ display: "inline-block" }}
+          style={{ display: "inline-block", willChange: "opacity, transform" }}
           variants={{
             hidden: { opacity: 0, y: 18 },
             visible: { opacity: 1, y: 0 },
