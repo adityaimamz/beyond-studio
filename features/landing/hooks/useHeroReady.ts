@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export function useHeroReady(delay = 2100) {
+export function useHeroReady(delay = 150) {
   const [heroReady, setHeroReady] = useState(false);
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Inter, Inter_Tight } from 'next/font/google';
 import './globals.css'; // Global styles
 import 'lenis/dist/lenis.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
@@ -8,6 +9,18 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import { Analytics } from '@vercel/analytics/react';
 import { JsonLd } from '@/components/seo/JsonLd';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const interTight = Inter_Tight({
+  subsets: ['latin'],
+  variable: '--font-inter-tight',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.beyondstudio.site'),
@@ -55,12 +68,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" suppressHydrationWarning className="dark">
+    <html lang="id" suppressHydrationWarning className={`dark ${inter.variable} ${interTight.variable}`}>
       <head>
         <JsonLd />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body suppressHydrationWarning>
         {/* Google tag (gtag.js) */}
