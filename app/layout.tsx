@@ -8,16 +8,30 @@ import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://beyond-studio-lac.vercel.app'),
+  metadataBase: new URL('https://www.beyondstudio.site'),
   title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
   description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
   openGraph: {
     title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
     description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
-    url: '/',
+    url: 'https://www.beyondstudio.site',
     siteName: 'Beyond Studio',
+    images: [
+      {
+        url: '/images/logo-light.png',
+        width: 1200,
+        height: 630,
+        alt: 'Beyond Studio Logo',
+      },
+    ],
     locale: 'id_ID',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Beyond Studio - Jasa Pembuatan Website Custom Profesional',
+    description: 'Beyond Studio melayani pembuatan website custom untuk bisnis, portofolio, dan pengerjaan skripsi/tugas akhir mahasiswa.',
+    images: ['/images/logo-light.png'],
   },
 };
 
