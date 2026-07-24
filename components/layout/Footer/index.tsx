@@ -81,12 +81,12 @@ export function Footer() {
         {/* RIGHT: two columns */}
         <div className="flex gap-24 flex-wrap">
           <div>
-            <h4
+            <h3
               className="text-muted-foreground text-sm uppercase tracking-wider opacity-50 font-semibold"
               style={fadeUp(inView, d.col1Title)}
             >
               Navigasi
-            </h4>
+            </h3>
             <ul className="list-none mt-7 flex flex-col gap-6">
               {bsNavItems.map((item, i) => (
                 <li key={item.label} style={fadeUp(inView, d.col1Title + d.col1Step * (i + 1))}>
@@ -99,12 +99,12 @@ export function Footer() {
           </div>
 
           <div>
-            <h4
+            <h3
               className="text-muted-foreground text-sm uppercase tracking-wider opacity-50 font-semibold"
               style={fadeUp(inView, d.col2Title)}
             >
               Hubungi Kami
-            </h4>
+            </h3>
             <div className="mt-7 flex gap-3">
               <a
                 href={`https://wa.me/${bsKontakContent.whatsappNumberPlaceholder}`}
