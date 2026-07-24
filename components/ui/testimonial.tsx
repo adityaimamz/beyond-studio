@@ -27,7 +27,7 @@ const TestimonialsColumn = (props: {
           animationDuration: `${props.duration || 10}s`,
           animationPlayState: inView ? "running" : "paused",
         }}
-        className="marquee-column flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0 [transform:translateZ(0)] [will-change:transform]"
+        className="marquee-column flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
       >
         {[
           ...new Array(2).fill(0).map((_, index) => (
@@ -49,7 +49,7 @@ const TestimonialsColumn = (props: {
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
                     transition: { type: "spring", stiffness: 400, damping: 17 }
                   }}
-                  className="p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-neutral-900 transition-[transform,background-color,border-color,box-shadow,ring-color] duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30 [transform:translateZ(0)] [will-change:transform]" 
+                  className="p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-neutral-900 transition-[transform,background-color,border-color,box-shadow,ring-color] duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30" 
                 >
                   <blockquote className="m-0 p-0">
                     <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal m-0 transition-colors duration-300">
