@@ -331,19 +331,20 @@ export interface LayananCard {
   badge?: string;         // e.g. "Khusus Mahasiswa"
   mockupImage?: string;       // key into layananMockups, resolved in component
   floatingStat?: { value: string; label: string; trend?: string }; // trend e.g. "+18%"
-  gridArea: "step" | "account" | "trusted" | "loan" | "deals" | "track";
+  chips: string[];        // "Cocok untuk" tags, revealed on hover (shown statically on the wide "custom" card)
+  gridArea: "web" | "folio" | "shop" | "biz" | "academic" | "custom";
 }
 export const bsLayananCards: LayananCard[] = [
-  { id: "web-application", title: "Web Application", description: "Aplikasi web custom sesuai kebutuhan bisnis. Cocok untuk: Dashboard, Sistem Informasi, Booking, Inventory, POS, ERP, HRIS, CRM, LMS, Portal, dan Platform Digital , dll.", size: "large", style: "dark", mockupImage: "sistemInformasi", floatingStat: { value: "Custom", label: "Sesuai Kebutuhan" }, gridArea: "step" },
-  { id: "portfolio", title: "Portfolio Website", description: "Website personal untuk freelancer dan profesional. Cocok untuk: Programmer, Designer, Photographer, Freelancer, dan CV Online.", size: "large", style: "dark", floatingStat: { value: "80+", label: "Profesional Sudah Pakai" }, gridArea: "account" },
-  { id: "custom-solution", title: "Custom Solution", description: "Untuk kebutuhan yang tidak masuk kategori paket lainnya. Contoh: AI Integration, Automation, API Development, Dashboard Analytics, Internal Company System, Maintenance Website, serta Integrasi Payment, WhatsApp, dan ERP.", size: "small", style: "dark", icon: "LayoutTemplate", mockupImage: "landingPage", floatingStat: { value: "Konsultasi", label: "Gratis" }, gridArea: "deals" },
-  { id: "business-website", title: "Business Website", description: "Website profesional untuk memperkenalkan bisnis, jasa, atau personal branding. Cocok untuk: Company Profile, Landing Page, Website Jasa, UMKM, dan Personal Branding.", size: "small", style: "dark", icon: "Building2", mockupImage: "companyProfile", floatingStat: { value: "5", label: "Halaman" }, gridArea: "loan" },
-  { id: "e-commerce", title: "E-Commerce", description: "Website toko online lengkap untuk menjual produk secara profesional. Cocok untuk: Fashion, Kuliner, Grosir, dan Toko Online.", size: "small", style: "beige", icon: "ShoppingCart", floatingStat: { value: "50", label: "Katalog Produk" }, gridArea: "trusted" },
-  { id: "academic-project", title: "Academic Project", description: "Pembuatan aplikasi web untuk kebutuhan akademik. Cocok untuk: Skripsi, Tugas Akhir, Prototype, dan Penelitian.", size: "small", style: "dark", icon: "GraduationCap", badge: "Khusus Mahasiswa", mockupImage: "paketSkripsi", floatingStat: { value: "50+", label: "Mahasiswa Terbantu" }, gridArea: "track" },
+  { id: "web-application", title: "Web Application", description: "Aplikasi web yang dibangun dari alur kerja kamu, bukan dari template. Data rapi, akses per peran, laporan langsung jadi.", size: "large", style: "dark", mockupImage: "sistemInformasi", floatingStat: { value: "Custom", label: "Sesuai Kebutuhan" }, chips: ["Dashboard", "Sistem Informasi", "Booking", "Inventory", "POS", "ERP", "HRIS", "+3 lainnya"], gridArea: "web" },
+  { id: "portfolio", title: "Portfolio Website", description: "Satu halaman yang bikin klien percaya sebelum kamu mulai bicara. Rapi di desktop, enak dibaca di HP.", size: "large", style: "dark", floatingStat: { value: "80+", label: "Profesional Sudah Pakai" }, chips: ["Programmer", "Designer", "Photographer", "Freelancer", "CV Online"], gridArea: "folio" },
+  { id: "e-commerce", title: "E-Commerce", description: "Toko online yang siap jualan hari itu juga: katalog, checkout, dan laporan penjualan.", size: "small", style: "beige", icon: "ShoppingCart", floatingStat: { value: "50", label: "Katalog Produk" }, chips: ["Fashion", "Kuliner", "Grosir", "Toko Online"], gridArea: "shop" },
+  { id: "business-website", title: "Business Website", description: "Wajah bisnis kamu di internet. Cepat dibuka, kredibel, gampang ditemukan di Google.", size: "small", style: "dark", icon: "Building2", mockupImage: "companyProfile", floatingStat: { value: "5", label: "Halaman" }, chips: ["Company Profile", "Landing Page", "Website Jasa", "UMKM"], gridArea: "biz" },
+  { id: "academic-project", title: "Academic Project", description: "Aplikasi web untuk skripsi dan penelitian, lengkap dengan dokumentasi yang siap diuji.", size: "small", style: "dark", icon: "GraduationCap", badge: "Khusus Mahasiswa", mockupImage: "paketSkripsi", floatingStat: { value: "50+", label: "Mahasiswa Terbantu" }, chips: ["Skripsi", "Tugas Akhir", "Prototype", "Penelitian"], gridArea: "academic" },
+  { id: "custom-solution", title: "Custom Solution", description: "Kebutuhan yang tidak masuk kotak mana pun. Ceritakan masalahnya, kami rancang dan bangun dari nol.", size: "small", style: "dark", icon: "LayoutTemplate", mockupImage: "landingPage", floatingStat: { value: "Konsultasi", label: "Gratis" }, chips: ["AI Integration", "Automation", "API Development", "Dashboard Analytics", "Maintenance", "Integrasi Payment"], gridArea: "custom" },
 ];
 export const bsLayananHeader = {
-  eyebrow: "Kerja Cepat, Tanpa Ribet",           // reuse existing top-right small label pattern
-  headline: "6 Layanan untuk Setiap Kebutuhan Website Anda",
-  cta: { label: "Konsultasi Gratis", href: "#contact" },  // replaces "Join beta now"
+  eyebrow: "Layanan",
+  headline: "Enam layanan, satu cara kerja yang sama rapinya.",
+  subheadline: "Dari dashboard internal sampai skripsi. Pilih yang paling dekat dengan kebutuhan kamu.",
 };
 
