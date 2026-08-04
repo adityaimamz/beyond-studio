@@ -25,7 +25,7 @@ function fadeRight(inView: boolean, delay: number): React.CSSProperties {
 }
 
 export function Footer() {
-  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.1 });
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0 });
 
   const d = {
     description: 0,

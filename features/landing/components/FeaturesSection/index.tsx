@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ function SectionHeader() {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex flex-col gap-10 w-full md:max-w-[690px]"
       >
@@ -55,7 +55,7 @@ function SectionHeader() {
       <motion.p
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
         className="hidden md:block text-xl text-neutral-500 text-right shrink-0"
       >
@@ -69,7 +69,7 @@ function FeatureCards() {
   const cardAnim = (delay: number) => ({
     initial: { opacity: 0, y: 50 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-80px" },
+    viewport: { once: true, amount: 0 },
     transition: { duration: 0.7, delay, ease: "easeOut" as const },
   });
   const [countActive, setCountActive] = useState(false);
@@ -88,7 +88,7 @@ function FeatureCards() {
           className="absolute bottom-0 left-5 right-5 bg-white/5 border border-white/5 rounded-t-2xl p-3 pt-[30px] flex flex-col gap-1"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
           variants={{
             hidden: { opacity: 0, y: 60 },
             visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut", delayChildren: 0.5, staggerChildren: 0.15 } },
@@ -122,7 +122,7 @@ function FeatureCards() {
           className="mt-4 flex justify-center gap-2"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ staggerChildren: 0.12, delayChildren: 1.0 }}
         >
           {["V1.0", "v2.0", "Remaster"].map((t) => (
@@ -140,7 +140,7 @@ function FeatureCards() {
           className="absolute bottom-0 w-1/2 left-1/2 h-[240px]"
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.5 }}
           style={{ x: "-50%" }}
         >
@@ -175,7 +175,7 @@ function FeatureCards() {
           className="absolute bottom-[80px] left-0 w-full h-[180px] px-6 flex items-end justify-between gap-2 overflow-hidden"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ staggerChildren: 0.1, delayChildren: 0.7 }}
         >
           {["33%", "16%", "72%", "36%", "88%", "22%"].map((h, i) => (

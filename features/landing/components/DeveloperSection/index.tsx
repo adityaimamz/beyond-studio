@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { motion } from "framer-motion";
@@ -38,7 +38,7 @@ export function DeveloperSection() {
             className="flex gap-3"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             <button className="bg-white text-black px-7 py-4 rounded-xl font-medium hover:bg-neutral-200 transition-colors cursor-pointer">
@@ -56,7 +56,7 @@ export function DeveloperSection() {
           style={{ backgroundColor: "#0F0D0F" }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
           {/* Top bar */}
@@ -68,7 +68,7 @@ export function DeveloperSection() {
               className="flex gap-1.5 sm:gap-3"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ staggerChildren: 0.15, delayChildren: 0.5 }}
             >
               {[whiteCursorUrl, copyUrl, plusUrl].map((src, i) => (
@@ -88,7 +88,7 @@ export function DeveloperSection() {
               className="bg-white text-black text-sm px-2.5 sm:px-4 py-1.5 rounded-lg font-medium hover:bg-neutral-200 transition-colors whitespace-nowrap cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
             >
               Export code
@@ -113,7 +113,7 @@ export function DeveloperSection() {
                   className="size-10 bg-zinc-800 rounded-lg flex items-center justify-center shrink-0 mt-2 sm:mt-6 cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
                 >
                   <img src={copyUrl} alt="" width={16} height={16} />

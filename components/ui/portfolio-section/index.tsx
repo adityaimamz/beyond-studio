@@ -91,7 +91,7 @@ function useScrollAnimation() {
     if (!element) return;
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
+      { threshold: 0 }
     );
     observer.observe(element);
     return () => observer.disconnect();

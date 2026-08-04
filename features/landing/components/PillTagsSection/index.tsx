@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { useRef } from "react";
@@ -99,7 +99,7 @@ function Row({
       className="relative flex gap-5 md:gap-7"
       initial={shouldReduceMotion ? undefined : { opacity: 0, y: 18 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
     >
       {/* Rail column */}
@@ -184,7 +184,7 @@ export function PillTagsSection() {
         <motion.div
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl flex flex-col items-center gap-5"
         >

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { motion } from "framer-motion";
@@ -26,7 +26,7 @@ export function WordsReveal({
   const MotionTag = motion[as] as typeof motion.span;
   const triggerProps =
     active === undefined
-      ? { whileInView: "visible" as const, viewport: { once: true, margin: "-80px" } }
+      ? { whileInView: "visible" as const, viewport: { once: true, amount: 0 } }
       : { animate: active ? ("visible" as const) : ("hidden" as const) };
 
   return (

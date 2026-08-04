@@ -80,7 +80,7 @@ function SectionHeader() {
       <motion.div
         initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex flex-col gap-4 w-full md:max-w-[640px]"
       >
@@ -96,7 +96,7 @@ function SectionHeader() {
       <motion.p
         initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
         className="text-[15px] leading-relaxed text-neutral-500 md:text-right max-w-[280px] shrink-0"
       >
@@ -136,7 +136,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
       <motion.div
         initial={shouldReduceMotion ? undefined : { opacity: 0, y: 50 }}
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.7, delay, ease: "easeOut" }}
         className="relative h-full min-h-[380px] md:min-h-0 rounded-3xl overflow-hidden bg-neutral-950 border border-white/5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-7 md:p-9 text-left"
       >
@@ -180,7 +180,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
     <motion.div
       initial={shouldReduceMotion ? undefined : { opacity: 0, y: 50 }}
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.7, delay, ease: "easeOut" }}
       className="group relative h-full min-h-[380px] md:min-h-0 md:h-full rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 flex flex-col text-left"
     >
@@ -227,7 +227,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
         className={`relative mx-4 md:mx-5 mb-4 md:mb-5 mt-auto pt-4 pr-2 ${meta.imageHeight} shrink-0`}
         initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.25 }}
       >
         <ServiceVisual variant={meta.visual} />

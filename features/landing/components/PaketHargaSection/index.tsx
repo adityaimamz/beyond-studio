@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -143,7 +143,7 @@ export function PaketHargaSection() {
           variants={shouldReduceMotion ? {} : containerVariants}
           initial={shouldReduceMotion ? "visible" : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
         >
           {bsPaketHargaList.map((plan, index) => (
             <PaketHargaCard key={index} plan={plan} />

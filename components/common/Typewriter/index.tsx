@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useInView as useInViewFM } from "framer-motion";
@@ -12,7 +12,7 @@ export interface TypewriterProps {
 
 export function Typewriter({ text, className, speed = 20, delay = 0 }: TypewriterProps) {
   const ref = useRef<HTMLPreElement>(null);
-  const inView = useInViewFM(ref, { once: true, margin: "-80px" });
+  const inView = useInViewFM(ref, { once: true, amount: 0 });
   const [shown, setShown] = useState("");
 
   useEffect(() => {

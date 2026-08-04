@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { GrainGradient } from "@paper-design/shaders-react";
 import { useState } from "react";
@@ -42,7 +42,7 @@ export function ContactSection() {
             className="flex min-h-[560px] items-start rounded-3xl border border-black/10 bg-white px-6 py-12 sm:px-10 dark:border-white/10 dark:bg-[#0a0a0a] lg:min-h-[640px] lg:px-14 lg:py-16"
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="mx-auto w-full max-w-[520px]">
@@ -155,7 +155,7 @@ export function ContactSection() {
             className="relative flex min-h-[420px] overflow-hidden rounded-3xl bg-black p-8 text-white sm:p-12 lg:min-h-[640px]"
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           >
             <GrainGradient

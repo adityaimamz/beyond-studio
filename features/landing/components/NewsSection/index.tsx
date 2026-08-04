@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { motion } from "framer-motion";
@@ -32,7 +32,7 @@ export function NewsSection() {
             href="#"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             className="inline-flex shrink-0 bg-white text-black px-7 py-4 rounded-xl font-medium text-lg hover:bg-neutral-200 transition-colors"
           >
@@ -47,7 +47,7 @@ export function NewsSection() {
             className="w-full lg:w-[35%] shrink-0"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="rounded-3xl overflow-hidden bg-neutral-900">
@@ -80,7 +80,7 @@ export function NewsSection() {
             <WordsReveal
               as="p"
               className="text-xl lg:text-2xl text-neutral-100 opacity-40 leading-8 block"
-              text="Experience enhanced user experience, advanced AI capabilities, collaboration tools, an expanded asset library, performance improvements, customization options, integration with popular tools, enhanced security, and comprehensive tutorials and support – all in one update!"
+              text="Experience enhanced user experience, advanced AI capabilities, collaboration tools, an expanded asset library, performance improvements, customization options, integration with popular tools, enhanced security, and comprehensive tutorials and support â€“ all in one update!"
               step={0.025}
               delay={0.6}
               duration={0.5}

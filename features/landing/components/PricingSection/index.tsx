@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import type * as React from "react";
 import { motion } from "framer-motion";
@@ -25,7 +25,7 @@ function PricingPlan({ price, description, features, cta, ctaClass }: PricingPla
       className="flex flex-col"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ staggerChildren: 0.12, delayChildren: 0.2 }}
     >
       <motion.div className="flex items-baseline gap-3" variants={item} transition={{ duration: 0.55, ease: "easeOut" }}>
@@ -87,7 +87,7 @@ export function PricingSection() {
           className="mt-24 border-t border-black/10 pt-12 flex flex-wrap justify-center items-center gap-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ staggerChildren: 0.15, delayChildren: 0.1 }}
         >
           {[

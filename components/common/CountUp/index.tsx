@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform, animate, useInView as useInViewFM } from "framer-motion";
@@ -51,7 +51,7 @@ export function CountUpInView({
   active,
 }: CountUpInViewProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInViewFM(ref, { once: true, margin: "-100px" });
+  const inView = useInViewFM(ref, { once: true, amount: 0 });
   const trigger = active === undefined ? inView : active;
   const [start, setStart] = useState(false);
 

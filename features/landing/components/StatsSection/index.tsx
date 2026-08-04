@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef } from "react";
 import { motion, useInView as useInViewFM, useReducedMotion } from "framer-motion";
@@ -6,6 +6,7 @@ import { blueArrowUrl } from "@/constants/assets";
 import { CountNumber } from "@/components/common/CountUp";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import { Badge } from "@/components/ui/badge";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const palettes = {
   dark: {
@@ -55,18 +56,30 @@ const METRICS = [
 
 export function StatsSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInViewFM(ref, { once: true, margin: "-100px" });
+  const inView = useInViewFM(ref, { once: true, amount: 0 });
   const { theme } = useTheme();
   const isLight = theme === "light";
   const palette = palettes[isLight ? "light" : "dark"];
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
 
-  // Cursor choreography keyframes (delays start after card appears ~0.6s)
-  const cursorKeyframes = {
-    opacity: [0, 1, 1, 1, 1],
-    x: [100, -125, 35, 115, 115],
-    y: [100, -10, -10, 40, 40],
-  };
+  // Cursor choreography keyframes (delays start after card appears ~0.6s).
+  // On mobile the card is much narrower, so both the anchor point and the
+  // travel distance shrink to keep the "Beyond Team" label from clipping
+  // against the card's right edge (card has overflow-hidden).
+  const cursorAnchor = isMobile ? { top: "40%", left: "45%" } : { top: "35%", left: "55%" };
+  const cursorKeyframes = isMobile
+    ? {
+        opacity: [0, 1, 1, 1, 1],
+        x: [40, -50, 15, 45, 45],
+        y: [40, -10, -10, 30, 30],
+      }
+    : {
+        opacity: [0, 1, 1, 1, 1],
+        x: [100, -125, 35, 115, 115],
+        y: [100, -10, -10, 40, 40],
+      };
+  const cursorRestPosition = isMobile ? { x: 45, y: 30 } : { x: 115, y: 40 };
 
   const cursorTransition = {
     duration: 2.6,
@@ -83,7 +96,7 @@ export function StatsSection() {
           className="flex flex-col items-center gap-5 max-w-3xl"
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <Badge className="w-fit tracking-[0.08em] uppercase">
@@ -98,7 +111,7 @@ export function StatsSection() {
           className={`max-w-3xl text-lg md:text-xl leading-relaxed mt-6 ${theme === "light" ? "text-neutral-600" : "text-neutral-400"}`}
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
           Kami memahami bahwa setiap bisnis memiliki kebutuhan yang berbeda. Oleh karena itu, kami mengutamakan komunikasi yang transparan dan proses pengembangan yang disesuaikan, guna menghasilkan website yang benar-benar mendukung tujuan bisnis Anda.
@@ -114,7 +127,7 @@ export function StatsSection() {
               className={`flex items-start justify-between gap-6 py-7 border-b ${palette.specBorder}`}
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.15 + i * 0.1 }}
             >
               <div className="flex flex-col gap-2 max-w-[20ch]">
@@ -148,7 +161,7 @@ export function StatsSection() {
             className={`relative ${palette.cardBg} rounded-[2rem] p-8 sm:p-12 w-full max-w-[570px] overflow-hidden transition-colors duration-500`}
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           >
             <p className={`text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight ${palette.cardTitle}`}>
@@ -180,10 +193,10 @@ export function StatsSection() {
             </p>
             {/* Animated cursor */}
             <motion.div
-              className="absolute pointer-events-none hidden sm:block"
-              style={{ top: "40%", left: "55%" }}
-              initial={shouldReduceMotion ? undefined : { opacity: 0, x: 100, y: 100 }}
-              animate={inView && !shouldReduceMotion ? cursorKeyframes : (shouldReduceMotion ? { opacity: 1, x: 115, y: 40 } : { opacity: 0, x: 100, y: 100 })}
+              className="absolute pointer-events-none"
+              style={cursorAnchor}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, x: cursorKeyframes.x[0], y: cursorKeyframes.y[0] }}
+              animate={inView && !shouldReduceMotion ? cursorKeyframes : (shouldReduceMotion ? { opacity: 1, ...cursorRestPosition } : { opacity: 0, x: cursorKeyframes.x[0], y: cursorKeyframes.y[0] })}
               transition={cursorTransition}
             >
               <img src={blueArrowUrl} alt="" width={28} height={28} />

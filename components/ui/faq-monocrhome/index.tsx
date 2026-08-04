@@ -303,27 +303,12 @@ export function FAQ1({
   const toggleQuestion = (index: number) =>
     setActiveIndex((prev) => (prev === index ? -1 : index));
 
+  // Fade in on mount, not on window "load": waiting for full page load meant a
+  // slow/backgrounded mobile tab could leave this whole section at opacity 0
+  // forever, showing the black page background instead of the content.
   useEffect(() => {
-    if (typeof window === "undefined") {
-      setHasEntered(true);
-      return;
-    }
-
-    let timeout: number | undefined;
-    const onLoad = () => {
-      timeout = window.setTimeout(() => setHasEntered(true), 120);
-    };
-
-    if (document.readyState === "complete") {
-      onLoad();
-    } else {
-      window.addEventListener("load", onLoad, { once: true });
-    }
-
-    return () => {
-      window.removeEventListener("load", onLoad);
-      if (timeout !== undefined) window.clearTimeout(timeout);
-    };
+    const timeout = window.setTimeout(() => setHasEntered(true), 120);
+    return () => window.clearTimeout(timeout);
   }, []);
 
   const setCardGlow = useCallback((event: React.MouseEvent<HTMLLIElement>) => {

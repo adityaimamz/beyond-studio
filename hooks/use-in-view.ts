@@ -5,7 +5,7 @@ export interface UseInViewOptions extends IntersectionObserverInit {
 }
 
 export function useInView<T extends HTMLElement = HTMLElement>(
-  options: UseInViewOptions = { threshold: 0.15 }
+  options: UseInViewOptions = { threshold: 0 }
 ) {
   const { once = true, ...observerOptions } = options;
   const ref = useRef<T | null>(null);

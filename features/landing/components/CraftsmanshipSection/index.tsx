@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -81,7 +81,7 @@ export function CraftsmanshipSection() {
             className="flex flex-wrap gap-4"
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
             whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           >
             <Button
@@ -107,7 +107,7 @@ export function CraftsmanshipSection() {
           style={{ backgroundColor: palette.macBg }}
           initial={shouldReduceMotion ? undefined : { opacity: 0, y: 40 }}
           whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
           {/* Top bar */}
@@ -119,7 +119,7 @@ export function CraftsmanshipSection() {
               className="flex gap-1.5 sm:gap-3"
               initial={shouldReduceMotion ? "visible" : "hidden"}
               whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ staggerChildren: 0.15, delayChildren: 0.5 }}
             >
               {[whiteCursorUrl, copyUrl, plusUrl].map((src, i) => (
@@ -138,7 +138,7 @@ export function CraftsmanshipSection() {
             <motion.div
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
             >
               <Badge className={`${palette.badge} px-3 py-1.5 rounded-lg whitespace-nowrap text-xs font-semibold`}>
@@ -161,7 +161,7 @@ export function CraftsmanshipSection() {
                   className="size-10 bg-zinc-800 rounded-lg flex items-center justify-center shrink-0 cursor-pointer text-white/70 hover:text-white transition-colors"
                   initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
                   whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: true, amount: 0 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
                   title="Copy code"
                 >
