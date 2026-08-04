@@ -214,6 +214,13 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
             duration={0.5}
           />
         </div>
+
+        {/* Mobile: chips shown statically (no hover on touch), same treatment as the Custom Solution card */}
+        <div className="flex md:hidden flex-wrap gap-2 mt-1">
+          {card.chips.map((chip) => (
+            <LayananChip key={chip} label={chip} />
+          ))}
+        </div>
       </div>
 
       <motion.div
@@ -224,7 +231,8 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
         transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.25 }}
       >
         <ServiceVisual variant={meta.visual} />
-        <div className="absolute inset-x-0 bottom-0 rounded-b-xl overflow-hidden translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out bg-neutral-950/95 backdrop-blur-sm border-t border-white/10 px-4 py-3.5 flex flex-wrap gap-1.5">
+        {/* Desktop: chips revealed on hover, sliding up over the visual */}
+        <div className="hidden md:flex absolute inset-x-0 bottom-0 rounded-b-xl overflow-hidden translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out bg-neutral-950/95 backdrop-blur-sm border-t border-white/10 px-4 py-3.5 flex-wrap gap-1.5">
           <span className="w-full text-[10px] font-semibold tracking-widest uppercase text-neutral-500 mb-0.5">
             Cocok untuk
           </span>
