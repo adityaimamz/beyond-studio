@@ -59,7 +59,7 @@ const CARD_META: Record<
     icon: GraduationCap,
     accent: "#3B82F6",
     visual: "academic",
-    imageHeight: "h-[150px] md:h-[170px]",
+    imageHeight: "h-[195px] md:h-[215px]",
   },
 };
 
