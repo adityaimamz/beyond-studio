@@ -112,8 +112,8 @@ function LayananChip({ label }: { label: string }) {
     <span
       className={
         isMore
-          ? "text-[11px] text-neutral-500 px-2.5 py-1 rounded-full border border-dashed border-white/15"
-          : "text-[11px] text-neutral-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10"
+          ? "text-[11px] text-neutral-500 px-2.5 py-1 rounded-full border border-dashed border-white/15 hover:border-white/25 transition-colors duration-fast ease-out"
+          : "text-[11px] text-neutral-300 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-fast ease-out"
       }
     >
       {label}
@@ -138,7 +138,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
         whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.7, delay, ease: "easeOut" }}
-        className="relative h-full min-h-[380px] md:min-h-0 rounded-3xl overflow-hidden bg-neutral-950 border border-white/5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-7 md:p-9 text-left"
+        className="group relative h-full min-h-[380px] md:min-h-0 rounded-3xl overflow-hidden bg-neutral-950 border border-white/5 hover:border-white/15 transition-colors duration-normal ease-out grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-7 md:p-9 text-left"
       >
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
@@ -169,7 +169,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
             ))}
           </div>
         </div>
-        <div className="relative h-[200px] md:h-[240px]">
+        <div className="relative h-[200px] md:h-[240px] transition-transform duration-normal ease-out group-hover:-translate-y-1 motion-reduce:transform-none">
           <ServiceVisual variant={meta.visual} />
         </div>
       </motion.div>
@@ -182,7 +182,7 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
       whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.7, delay, ease: "easeOut" }}
-      className="group relative h-full min-h-[380px] md:min-h-0 md:h-full rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 flex flex-col text-left"
+      className="group relative h-full min-h-[380px] md:min-h-0 md:h-full rounded-3xl overflow-hidden bg-neutral-900 border border-white/5 hover:border-white/15 transition-colors duration-normal ease-out flex flex-col text-left"
     >
       <div className="p-6 md:p-7 pb-5 flex flex-col gap-3 shrink-0">
         <div className="flex items-center justify-between gap-3">
@@ -230,9 +230,11 @@ function LayananCardComponent({ card, index }: { card: LayananCard; index: numbe
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: delay + 0.25 }}
       >
-        <ServiceVisual variant={meta.visual} />
+        <div className="w-full h-full transition-transform duration-normal ease-out group-hover:-translate-y-1 motion-reduce:transform-none">
+          <ServiceVisual variant={meta.visual} />
+        </div>
         {/* Desktop: chips revealed on hover, sliding up over the visual */}
-        <div className="hidden md:flex absolute inset-x-0 bottom-0 rounded-b-xl overflow-hidden translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out bg-neutral-950/95 backdrop-blur-sm border-t border-white/10 px-4 py-3.5 flex-wrap gap-1.5">
+        <div className="hidden md:flex absolute inset-x-0 bottom-0 rounded-b-xl overflow-hidden translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-normal ease-out will-change-transform motion-reduce:transition-opacity bg-neutral-950/95 backdrop-blur-sm border-t border-white/10 px-4 py-3.5 flex-wrap gap-1.5">
           <span className="w-full text-[10px] font-semibold tracking-widest uppercase text-neutral-500 mb-0.5">
             Cocok untuk
           </span>
