@@ -8,3 +8,5 @@ export * from "./TestimoniSection";
 export * from "./FaqSection";
 export * from "./ContactSection";
 
+export * from "./ReelTheaterSection";
+export * from "./MotionGallerySection";

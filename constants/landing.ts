@@ -58,6 +58,7 @@ export const bsNavItems: NavItem[] = [
   { label: "Layanan", href: "#layanan" },
   { label: "Paket Harga", href: "#paket-harga" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Motion", href: "#motion" },
   { label: "FAQ", href: "#faq" },
 ];
 export const bsNavCTA: NavItem = {
@@ -499,6 +500,7 @@ export const bsKontakContent = {
     "Web Application",
     "Portfolio Website",
     "Academic Project",
+    "Motion Graphics Video",
     "Custom Solution",
   ],
   whatsappNumberPlaceholder: "6281927070239",
@@ -658,4 +660,115 @@ export const bsLayananHeader = {
   headline: "Solusi digital yang dirancang sesuai kebutuhan Anda.",
   subheadline:
     "Dari website profesional hingga aplikasi bisnis yang kompleks, setiap solusi dirancang dengan proses yang terstruktur dan fokus pada kebutuhan Anda.",
+};
+
+// MOTION GRAPHICS
+// Video penuh (dengan suara) di-host di Mux dan diputar di lightbox. Preview loop
+// muted berupa file statis di public/videos/previews/<slug>.mp4 (Mux Free plan hanya
+// 10 asset, jadi preview tidak diunggah ke sana). Playback ID diisi dari
+// scripts/mux-manifest.json lewat `node scripts/mux-apply.mjs`.
+// Film yang playbackId-nya kosong disembunyikan di production dan tampil sebagai
+// placeholder di dev.
+export interface MuxVideo {
+  playbackId: string; // master HLS di Mux, juga sumber poster
+  previewSrc: string; // loop muted, path di public/
+  posterTime?: number; // detik di master yang dipakai poster = awal clip preview
+}
+export interface MotionFilm {
+  slug: string;
+  title: string;
+  category: "Promo" | "Edukasi" | "Showreel";
+  description: string;
+  duration: string;
+  aspect: "16:9" | "9:16";
+  tech: string[];
+  video: MuxVideo;
+  portrait?: MuxVideo; // versi 9:16 dari film 16:9, dipakai di layar HP (opsional)
+  tiktokUrl?: string;
+}
+export const bsMotionFilms: MotionFilm[] = [
+  // Landscape dulu, portrait setelahnya: grid galeri 6+6 lalu 4+4+4 di desktop.
+  {
+    slug: "beyond-studio",
+    title: "Beyond Studio — Promo 30 Detik",
+    category: "Promo",
+    description:
+      "Panah dari logo berubah jadi kursor yang memandu penonton melewati toko online, portofolio, sampai sistem skripsi, lalu ditutup tombol WhatsApp dan QR yang langsung membuka chat.",
+    duration: "30 detik",
+    aspect: "16:9",
+    tech: ["HTML/CSS", "Motion blur sub-frame", "Audio sintetis"],
+    // preview: 7.5–15 s (kursor belanja → klik portofolio)
+    video: { playbackId: "4rUFR00em8my9mjSLjvk3GDjp2HjSLZmxlzPLYk602ndM", previewSrc: "/videos/previews/beyond-studio.mp4", posterTime: 7.5 },
+  },
+  {
+    slug: "celestial-scrolls",
+    title: "Celestial Scrolls",
+    category: "Promo",
+    description:
+      "Promo sinematik bertema xianxia untuk platform baca light novel: nebula, ribuan bintang, dan tipografi kinetik 3D yang mengikuti ketukan musik.",
+    duration: "30 detik",
+    aspect: "16:9",
+    tech: ["Canvas 2D", "CSS 3D", "60 fps"],
+    // preview: 4–12 s (dinding kartu 3D → halaman baca)
+    video: { playbackId: "cHtA900aM5tPJCg3VTT00SDGnMRmM7C3bgNa0100VaxUs8c", previewSrc: "/videos/previews/celestial-scrolls.mp4", posterTime: 4 },
+  },
+  {
+    slug: "satu-frame",
+    title: "Satu Frame",
+    category: "Edukasi",
+    description:
+      "Satu kali layar HP menyegarkan gambar, diperlambat miliaran kali: permintaan dari HP ke server Singapura lewat dasar Laut Jawa dan kembali lagi, tanpa satu pun cut.",
+    duration: "75 detik",
+    aspect: "9:16",
+    tech: ["three.js", "WebGL", "Audio sintetis"],
+    // preview: 13.125–20.625 s (hujan beku)
+    video: { playbackId: "YGI8hWh4gx9p3OqYTd3HIk01OuYRsB4XLoIGc001vt011c", previewSrc: "/videos/previews/satu-frame.mp4", posterTime: 13.125 },
+  },
+  {
+    slug: "evolusi-layar",
+    title: "Evolusi Layar",
+    category: "Edukasi",
+    description:
+      "Satu website kedai kopi berganti wajah dari terminal hijau 1991, era Flash, Web 2.0, sampai dark mode 2023. Semua digambar prosedural, tanpa footage.",
+    duration: "59 detik",
+    aspect: "9:16",
+    tech: ["Canvas 2D", "Voice over", "Audio sintetis"],
+    // preview: 4–12 s (terminal 1991 → era Flash 1998)
+    video: { playbackId: "n6BE2URjNV02SQVUZs6FFcVQP7D4SHp5xkfzMvhLs4Q8", previewSrc: "/videos/previews/evolusi-layar.mp4", posterTime: 4 },
+  },
+  {
+    slug: "harusnya-diam",
+    title: "Harusnya Diam",
+    category: "Showreel",
+    description:
+      "Showreel keahlian motion design: satu titik di ujung kalimat robek lepas dan memicu reaksi berantai di papan cetak risograf, dari tipografi kinetik sampai sound design.",
+    duration: "60 detik",
+    aspect: "9:16",
+    tech: ["three.js", "Stop-motion 12 fps", "Audio sintetis"],
+    // preview: 0–8 s (judul → halftone beriak). Versi Inggris.
+    video: { playbackId: "aUmgBXQLd026xdzMafdjoDMMekdRoE7gPWPHTFQNyvww", previewSrc: "/videos/previews/harusnya-diam.mp4" },
+  },
+];
+
+export const bsReelTheaterContent = {
+  eyebrow: "Showreel",
+  headline: "Brand Anda, Kini Bergerak.",
+  subheadline:
+    "Video promo Beyond Studio, dibangun frame demi frame dengan kode.",
+  caption: "Motion graphic · 100% dibuat dengan kode · 60 fps",
+  cta: "Tonton Full Video",
+  filmSlug: "beyond-studio",
+};
+
+export const bsMotionHeader = {
+  eyebrow: "Motion Graphics",
+  headline: "Video Promosi yang Dibangun dengan Kode",
+  subheadline:
+    "Video promo dan konten edukasi untuk TikTok, Reels, dan YouTube. Setiap frame dirender dari kode, jadi tajam di semua ukuran dan mudah direvisi.",
+  ctaHeadline: "Produk Anda layak punya video seperti ini.",
+  ctaDescription:
+    "Ceritakan produk atau pesan yang ingin disampaikan, kami bantu susun konsep dan storyboard-nya.",
+  ctaLabel: "Konsultasi Video Motion",
+  whatsappText:
+    "Halo Beyond Studio, saya tertarik membuat video motion graphic. Boleh konsultasi?",
 };

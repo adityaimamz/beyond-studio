@@ -171,15 +171,17 @@ beyond-studio/
 
 Urutan section di halaman:
 1. Hero Section
-2. Layanan Section
-3. Craftsmanship Section
-4. **Portfolio Section** ← Sticky scroll cards showcase
-5. Stats Section (Kenapa Pilih Kami)
-6. Pill Tags Section
-7. Paket Harga Section
-8. Testimoni Section (dengan Aurora gradient background)
-9. FAQ Section (shared Aurora background dengan Testimoni)
-10. Footer
+2. **Reel Theater** (`#showreel`) ← Showreel pinned, bingkai membesar saat scroll
+3. Layanan Section
+4. Craftsmanship Section
+5. **Portfolio Section** ← Sticky scroll cards showcase
+6. Stats Section (Kenapa Pilih Kami)
+7. **Motion Gallery** (`#motion`) ← Galeri video motion graphic + lightbox
+8. Pill Tags Section
+9. Paket Harga Section
+10. Testimoni Section (dengan Aurora gradient background)
+11. FAQ Section (shared Aurora background dengan Testimoni)
+12. Footer
 
 ---
 
@@ -333,6 +335,34 @@ Urutan section di halaman:
 
 ---
 
+### Motion Graphics (Reel Theater + Motion Gallery)
+
+Video dibuat di repo terpisah `Motion-Graphics-Code` dan di-host di **Mux**.
+
+- **Data:** `constants/landing.ts` → `bsMotionFilms`, `bsReelTheaterContent`, `bsMotionHeader`
+- **Komponen:** `features/landing/components/ReelTheaterSection/`, `features/landing/components/MotionGallerySection/` (kartu, `FilmMedia`, `MotionLightbox`), `components/common/AutoplayVideo/`
+- **Preview vs full:** kartu memutar *clip preview* muted loop dari file statis `public/videos/previews/<slug>.mp4` (poster diambil dari master Mux di `posterTime`). Klik → lightbox Mux Player (HLS, dengan suara), di-load hanya saat dibuka.
+- **Kenapa preview tidak di Mux:** akun Mux Free plan dibatasi **10 asset** (+100.000 menit tonton/bulan). Satu film = satu asset (master saja).
+- **Reel Theater (desktop ≥1024px):** section 260vh, isi sticky. Bingkai scale 0.5 → 1 (full-bleed) sambil latar meredup ke hitam. Mobile/tablet dan `prefers-reduced-motion`: versi statis tanpa pin, 9:16 di HP kalau ada `portrait`.
+- **Opacity berbasis scroll** wajib lewat mapping fungsi (`useOpacityRange`), bukan `useTransform` array: Framer mengakselerasi opacity dengan ScrollTimeline native yang mengabaikan offset section.
+- **Film tanpa playback ID** disembunyikan di production, tampil sebagai placeholder di dev.
+
+**Upload video** (butuh `MUX_TOKEN_ID`/`MUX_TOKEN_SECRET` di `.env.local`; token hanya dipakai script ini, app tidak membacanya, jadi **tidak perlu di-set di deployment**):
+```bash
+node --env-file=.env.local scripts/mux-upload.mjs <film.mp4> --slug <slug> --title "<judul>"   # upload master ke Mux
+node scripts/mux-apply.mjs                                                                      # salin playback ID ke constants/landing.ts
+```
+Film yang sudah ada di Mux didaftarkan tanpa upload: `--asset <ASSET_ID>` menggantikan `<film.mp4>`. Manifest: `scripts/mux-manifest.json` (jangan diedit manual).
+
+**Preview loop** (potongan ±8 detik, tanpa audio, simpan di `public/videos/previews/<slug>.mp4`, set `posterTime` = detik awal potongan). Landscape 720p cukup untuk kartu; film yang dipakai full-bleed di Reel Theater (Beyond Studio) wajib 1080p, kalau tidak terlihat lembek:
+```bash
+ffmpeg -ss <mulai> -t 8 -i film.mp4 -an -vf "scale=-2:720,format=yuv420p" -c:v libx264 -crf 22 -preset slow -r 60 -movflags +faststart preview.mp4   # portrait: scale=720:-2, 1080p: scale=-2:1080 -crf 19
+```
+
+**Film saat ini** (urutan landscape dulu, lalu portrait): Beyond Studio Promo (legacy, 16:9, 30 s), Celestial Scrolls (16:9), Satu Frame (9:16), Evolusi Layar (9:16), Harusnya Diam (9:16, versi EN). Beyond Studio belum punya versi vertikal; kalau dirender, tambahkan sebagai `portrait` supaya HP memakainya di Reel Theater.
+
+---
+
 ## 🎭 Alur Pengerjaan (Process Flow)
 
 1. **Konsultasi** - Diskusi kebutuhan lewat WhatsApp atau formulir
@@ -435,7 +465,13 @@ Untuk mengubah konten:
    - [ ] Get client permissions jika menggunakan nama/logo klien asli
    - [ ] Verify semua informasi proyek akurat
 
-7. **Additional Assets**
+7. **Motion Graphics**
+   - [ ] Upload master Satu Frame ke Mux (4 dari 5 film sudah), lalu `node scripts/mux-apply.mjs`
+   - [ ] (Opsional) Render Beyond Studio 9:16 untuk Reel Theater di HP
+   - [ ] Tentukan harga paket Motion Graphics, lalu tambahkan ke Paket Harga
+   - [ ] Isi `tiktokUrl` tiap film (opsional)
+
+8. **Additional Assets**
    - [ ] Portfolio section belum ada screenshot asli (semua dummy placeholders)
    - [ ] Perlu decide folder structure untuk case study pages jika akan ditambahkan
 
@@ -753,5 +789,5 @@ Beyond Studio adalah landing page modern yang dibangun dengan best practices unt
 **Last Updated:** January 2026  
 **Project Status:** ✅ Production Ready - Portfolio Section Implemented  
 **Current Phase:** Pre-Launch (Awaiting Real Content & Data)  
-**Section Order:** Hero → Layanan → Craftsmanship → **Portfolio** → Stats → Pill Tags → Pricing → Testimoni+FAQ (Aurora) → Footer  
+**Section Order:** Hero → **Reel Theater** → Layanan → Craftsmanship → **Portfolio** → Stats → **Motion Gallery** → Pill Tags → Pricing → Testimoni+FAQ (Aurora) → Footer  
 **Maintainer:** Beyond Studio Team

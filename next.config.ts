@@ -20,6 +20,15 @@ const nextConfig: NextConfig = {
     ],
   },
   output: 'standalone',
+  async headers() {
+    return [
+      {
+        // Preview loop jarang berubah; cache sehari supaya tidak diunduh ulang tiap kunjungan.
+        source: '/videos/:path*',
+        headers: [{key: 'Cache-Control', value: 'public, max-age=86400'}],
+      },
+    ];
+  },
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.

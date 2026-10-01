@@ -8,7 +8,9 @@ import {
   StatsSection,
   PillTagsSection,
   PaketHargaSection,
-  ContactSection
+  ContactSection,
+  ReelTheaterSection,
+  MotionGallerySection
 } from "@/features/landing/components";
 
 import { AuroraTestimoniFaqSection } from "@/features/landing/components/AuroraTestimoniFaqSection";
@@ -19,10 +21,12 @@ export default function Index() {
     <div className="relative w-full bg-background transition-colors duration-500 overflow-x-clip">
       <Navbar />
       <HeroSection />
+      <ReelTheaterSection />
       <LayananSection />
       <CraftsmanshipSection />
       <PortfolioSection />
       <StatsSection />
+      <MotionGallerySection />
       <PillTagsSection />
       <PaketHargaSection />
       <AuroraTestimoniFaqSection />

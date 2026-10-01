@@ -1,0 +1,37 @@
+{
+  "beyond-studio": {
+    "title": "Beyond Studio Promo",
+    "assetId": "fFXlNVbz8cCSPkMP0002jGhqNa19jWSVkTCF1kFkE4UNk",
+    "playbackId": "4rUFR00em8my9mjSLjvk3GDjp2HjSLZmxlzPLYk602ndM",
+    "duration": 30.04,
+    "aspectRatio": "16:9"
+  },
+  "celestial-scrolls": {
+    "title": "Celestial Scrolls",
+    "assetId": "9TCS7M6MpXZ18ykIixk02LHJprtg2I02MRvtQBOBlQ2LE",
+    "playbackId": "cHtA900aM5tPJCg3VTT00SDGnMRmM7C3bgNa0100VaxUs8c",
+    "duration": 30.03,
+    "aspectRatio": "16:9"
+  },
+  "evolusi-layar": {
+    "title": "Evolusi Layar",
+    "assetId": "s9ZsCcK4Nmmo02Sme1SyAZ014nJFZo3o8I5oxndaP4OD4",
+    "playbackId": "n6BE2URjNV02SQVUZs6FFcVQP7D4SHp5xkfzMvhLs4Q8",
+    "duration": 58.61,
+    "aspectRatio": "9:16"
+  },
+  "harusnya-diam": {
+    "title": "Harusnya Diam",
+    "assetId": "XZmDVZFF0111uqFVQadcvC00Q7MABqUTh8NYa9aMpXQ01k",
+    "playbackId": "aUmgBXQLd026xdzMafdjoDMMekdRoE7gPWPHTFQNyvww",
+    "duration": 60.04,
+    "aspectRatio": "9:16"
+  },
+  "satu-frame": {
+    "title": "Satu Frame",
+    "assetId": "yMaIEcxGACpVGrzCtJmcGvdEGRIDIhzrXPIZYX7R1lE",
+    "playbackId": "YGI8hWh4gx9p3OqYTd3HIk01OuYRsB4XLoIGc001vt011c",
+    "duration": 75.04,
+    "aspectRatio": "9:16"
+  }
+}
